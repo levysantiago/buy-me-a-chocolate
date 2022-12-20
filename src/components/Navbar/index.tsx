@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ConnectButton from "../ConnectButton";
 import { BSCLogo, ChocoLogo } from "../icons/styles";
 import {
   Container,
@@ -34,6 +35,7 @@ const Navbar: React.FC = () => {
 
   return (
     <Container>
+      {/* BIG DEVICES */}
       <MenuItem>
         <ChocoLogo />
         <ItemText>3.213</ItemText>
@@ -44,6 +46,11 @@ const Navbar: React.FC = () => {
         <ItemText>BSC</ItemText>
       </MenuItem>
 
+      <MenuItem>
+        <ConnectButton walletAddress="0x10ED43C718714eb63d5aA57B78B54704E256024E" />
+      </MenuItem>
+
+      {/* SMALL DEVICES */}
       <NavMenu
         onClick={() => {
           setSideNavOpened(!sideNavOpened);

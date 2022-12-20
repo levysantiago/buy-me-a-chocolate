@@ -15,3 +15,10 @@ export const BSCLogo = styled.img.attrs({
 })`
   width: 20px;
 `;
+
+export const WalletIcon = styled.img.attrs({
+  src: require("../../assets/wallet.svg").default,
+  attrs: "Wallet icon",
+})`
+  width: 20px;
+`;
