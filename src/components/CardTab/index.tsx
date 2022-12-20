@@ -20,7 +20,7 @@ const CardTab: React.FC = () => {
           }}
         >
           <TabTitle>Buy</TabTitle>
-          {tabSelected === 1 ? <TabSelector /> : null}
+          <TabSelector isVisible={tabSelected === 1} />
         </TabTitleContainer>
 
         {/* TAB 2 */}
@@ -30,7 +30,7 @@ const CardTab: React.FC = () => {
           }}
         >
           <TabTitle>Redeem</TabTitle>
-          {tabSelected === 2 ? <TabSelector /> : null}
+          <TabSelector isVisible={tabSelected === 2} />
         </TabTitleContainer>
       </TabsContainer>
     </Container>

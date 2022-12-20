@@ -5,6 +5,10 @@ interface IProps {
   theme: ITheme;
 }
 
+interface ITabSelectorProps extends IProps {
+  isVisible: boolean;
+}
+
 export const Container = styled.div(
   (props: IProps) => `
   background-color: ${props.theme.colors.brownMedium};
@@ -31,10 +35,11 @@ export const TabTitleContainer = styled.div`
 `;
 
 export const TabSelector = styled.div(
-  (props: IProps) => `
+  (props: ITabSelectorProps) => `
   width: 100%;
   height: 2px;
   background-color: ${props.theme.colors.orange};
+  visibility: ${props.isVisible ? "visible" : "hidden"};
 `
 );
 
