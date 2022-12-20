@@ -1,14 +1,19 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import Theme from "../../components/Theme";
+import { Container, HomeChocoLogo, Title, TitleContainer } from "./styles";
 
 const Home: React.FC = () => {
   return (
     <Theme>
-      <div>
+      <Container>
         <Navbar />
-        <h3>Buy me a Chocolate</h3>
-      </div>
+
+        <TitleContainer>
+          <HomeChocoLogo />
+          <Title>Buy me a Chocolate</Title>
+        </TitleContainer>
+      </Container>
     </Theme>
   );
 };

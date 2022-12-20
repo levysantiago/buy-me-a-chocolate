@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { BSCLogo, ChocoLogo } from "../icons/styles";
 import {
-  BSCLogo,
-  ChocoLogo,
   Container,
   ItemText,
   MenuIcon,

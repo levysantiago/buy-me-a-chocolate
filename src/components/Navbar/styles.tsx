@@ -36,20 +36,6 @@ export const MenuItem = styled.div`
   }
 `;
 
-export const ChocoLogo = styled.img.attrs({
-  src: require("../../assets/logo.svg").default,
-  attrs: "Token logo",
-})`
-  width: 20px;
-`;
-
-export const BSCLogo = styled.img.attrs({
-  src: require("../../assets/bsc-logo.svg").default,
-  attrs: "BSC logo",
-})`
-  width: 20px;
-`;
-
 export const NavMenu = styled.a.attrs({ href: "#" })`
   display: none;
 
@@ -59,7 +45,7 @@ export const NavMenu = styled.a.attrs({ href: "#" })`
     height: 60px;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
   }
 `;
 
@@ -73,7 +59,7 @@ export const MenuIcon = styled.img.attrs({
 export const ItemText = styled.span(
   (props: IProps) =>
     `
-  font-family: "Roboto-Bold";
+  font-family: ${props.theme.fonts.title};
   color: ${props.theme.colors.brown};
   font-size: 12px;
   margin-left: 5px;

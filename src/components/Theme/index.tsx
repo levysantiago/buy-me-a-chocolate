@@ -2,6 +2,7 @@ import { ThemeProvider } from "styled-components";
 
 const theme = {
   colors: {
+    orange: "#F07606",
     brown: "#9b5d08",
     brownMedium: "#3F2706",
     brownDark: "#0f0901",
