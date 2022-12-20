@@ -10,6 +10,12 @@ export const Container = styled.div`
   padding: 0px 50px;
 `;
 
+export const ContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
 export const HomeChocoLogo = styled(ChocoLogo)`
   width: 40px;
 
