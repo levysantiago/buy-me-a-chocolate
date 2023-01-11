@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import RoundChocoButton from "../../RoundChocoButton";
 import { ITheme } from "../../Theme";
 
 interface IProps {
@@ -19,3 +20,11 @@ export const Title = styled.span(
   color: ${props.theme.colors.orange};
 `
 );
+
+export const RoundButtonsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 0px;
+`;

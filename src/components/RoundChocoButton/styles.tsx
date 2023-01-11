@@ -23,6 +23,7 @@ export const Base = styled.div(
   align-items: center;
   justify-content: center;
   position: relative;
+  margin: 0px 5px;
 `
 );
 
