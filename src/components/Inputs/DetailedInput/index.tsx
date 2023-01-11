@@ -12,6 +12,7 @@ import {
 } from "./styles";
 
 interface IProps {
+  id?: string;
   title: string;
   value: string;
   type: "number" | "text";
@@ -21,7 +22,7 @@ interface IProps {
 }
 
 const DetailedInput: React.FC<IProps> = (props: IProps) => {
-  const { title, value, setValue, identifier, helperText, type } = props;
+  const { id, title, value, setValue, identifier, helperText, type } = props;
 
   return (
     <Container>
@@ -32,7 +33,7 @@ const DetailedInput: React.FC<IProps> = (props: IProps) => {
       <Base>
         <InsideBase borderRadiusCurved={!identifier}>
           <Input
-            id="text-input"
+            id={id}
             type={type}
             value={value}
             onChange={(e) => {
