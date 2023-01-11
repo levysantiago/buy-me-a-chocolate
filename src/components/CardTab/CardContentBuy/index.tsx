@@ -1,7 +1,8 @@
 import React from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
+import QuadButton from "../../QuadButton";
 import RoundChocoButton from "../../RoundChocoButton";
-import { Container, RoundButtonsContainer } from "./styles";
+import { ButtonContainer, Container, RoundButtonsContainer } from "./styles";
 import { Title } from "./styles";
 
 const CardContentBuy: React.FC = () => {
@@ -38,6 +39,10 @@ const CardContentBuy: React.FC = () => {
         type={"text"}
         setValue={() => {}}
       />
+
+      <ButtonContainer>
+        <QuadButton text={"Continuar"} />
+      </ButtonContainer>
     </Container>
   );
 };

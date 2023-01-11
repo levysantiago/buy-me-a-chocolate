@@ -13,7 +13,7 @@ export const Container = styled.div(
   (props: IProps) => `
   background-color: ${props.theme.colors.brownMedium};
   width: 500px;
-  height: 600px;
+  height: 550px;
   border-radius: 40px;
   padding: 30px 40px;
 `

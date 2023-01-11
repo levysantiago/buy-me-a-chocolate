@@ -11,6 +11,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 30px 0px;
+  padding: 10px 100px;
 `;
 
 export const Title = styled.span(
@@ -27,4 +28,9 @@ export const RoundButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   margin: 20px 0px;
+`;
+
+export const ButtonContainer = styled.div`
+  width: 200px;
+  margin-top: 40px;
 `;
