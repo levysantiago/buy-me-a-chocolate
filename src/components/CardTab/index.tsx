@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import CardContentBuy from "./CardContentBuy";
+import CardContentRedeem from "./CardContentRedeem";
 import {
   Container,
   TabsContainer,
@@ -33,6 +35,9 @@ const CardTab: React.FC = () => {
           <TabSelector isVisible={tabSelected === 2} />
         </TabTitleContainer>
       </TabsContainer>
+
+      {/* CARD CONTENT */}
+      {tabSelected === 1 ? <CardContentBuy /> : <CardContentRedeem />}
     </Container>
   );
 };
