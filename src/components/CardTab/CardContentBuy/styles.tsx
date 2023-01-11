@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import RoundChocoButton from "../../RoundChocoButton";
 import { ITheme } from "../../Theme";
 
 interface IProps {
