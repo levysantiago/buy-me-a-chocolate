@@ -43,3 +43,10 @@ export const Title = styled.span(
   }
 `
 );
+
+export const VersionBadgeContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 30px;
+`;

@@ -2,12 +2,14 @@ import React from "react";
 import CardTab from "../../components/CardTab";
 import Navbar from "../../components/Navbar";
 import Theme from "../../components/Theme";
+import VersionBadge from "../../components/VersionBadge";
 import {
   Container,
   ContentContainer,
   HomeChocoLogo,
   Title,
   TitleContainer,
+  VersionBadgeContainer,
 } from "./styles";
 
 const Home: React.FC = () => {
@@ -27,6 +29,10 @@ const Home: React.FC = () => {
         <ContentContainer>
           <CardTab />
         </ContentContainer>
+
+        <VersionBadgeContainer>
+          <VersionBadge />
+        </VersionBadgeContainer>
       </Container>
     </Theme>
   );
