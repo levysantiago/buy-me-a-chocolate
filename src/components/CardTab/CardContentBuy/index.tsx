@@ -7,7 +7,7 @@ const CardContentBuy: React.FC = () => {
   return (
     <Container>
       <Title>Buy someone a chocolate</Title>
-      <RoundChocoButton isSelected={false} />
+      <RoundChocoButton text="1x" isSelected={false} />
     </Container>
   );
 };
