@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ITheme } from "../Theme";
+import { ITheme } from "../../Theme";
 
 interface IProps {
   theme: ITheme;
@@ -9,7 +9,7 @@ interface IBaseProps extends IProps {
   isSelected: boolean | undefined;
 }
 
-export const Base = styled.div(
+export const Base = styled.button(
   (props: IBaseProps) => `
   background-color: ${
     props.isSelected ? props.theme.colors.brown : props.theme.colors.brownLight
@@ -24,6 +24,9 @@ export const Base = styled.div(
   justify-content: center;
   position: relative;
   margin: 0px 5px;
+  border: 0px;
+
+  transition: background-color 0.5s;
 `
 );
 
@@ -35,11 +38,13 @@ export const Text = styled.span(
     props.isSelected ? props.theme.colors.brownLight : props.theme.colors.brown
   };
   line-height: 0px;
+
+  transition: color 0.5s;
 `
 );
 
 export const ChocoIcon = styled.img.attrs({
-  src: require("../../assets/choco.svg").default,
+  src: require("../../../assets/choco.svg").default,
   alt: "Choco token icon",
 })`
   width: 24px;
