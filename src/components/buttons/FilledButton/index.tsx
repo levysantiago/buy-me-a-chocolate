@@ -6,7 +6,7 @@ interface IProps {
   onClick?: () => void;
 }
 
-const QuadButton: React.FC<IProps> = (props: IProps) => {
+const FilledButton: React.FC<IProps> = (props: IProps) => {
   const { onClick, text } = props;
 
   return (
@@ -16,4 +16,4 @@ const QuadButton: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-export default QuadButton;
+export default FilledButton;

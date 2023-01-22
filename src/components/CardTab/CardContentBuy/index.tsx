@@ -1,9 +1,9 @@
 import React from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
-import QuadButton from "../../QuadButton";
 import RoundChocoButton from "../../RoundChocoButton";
 import { ButtonContainer, Container, RoundButtonsContainer } from "./styles";
 import { Title } from "./styles";
+import ModalTrigger from "../../ModalTrigger";
 
 const CardContentBuy: React.FC = () => {
   return (
@@ -41,7 +41,11 @@ const CardContentBuy: React.FC = () => {
       />
 
       <ButtonContainer>
-        <QuadButton text={"Continuar"} />
+        {/* <QuadButton text={"Continuar"} /> */}
+        <ModalTrigger
+          title="Continuar"
+          modal={{ title: "Resumo de compra", content: <></> }}
+        />
       </ButtonContainer>
     </Container>
   );

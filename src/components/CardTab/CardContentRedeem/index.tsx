@@ -1,6 +1,6 @@
 import React from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
-import QuadButton from "../../QuadButton";
+import FilledButton from "../../buttons/FilledButton";
 import { ButtonContainer } from "../CardContentBuy/styles";
 import {
   BalanceContainer,
@@ -45,7 +45,7 @@ const CardContentRedeem: React.FC = () => {
       />
 
       <ButtonContainer>
-        <QuadButton text={"Continuar"} />
+        <FilledButton text={"Continuar"} />
       </ButtonContainer>
     </Container>
   );

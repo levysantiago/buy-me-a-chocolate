@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { ITheme } from "../Theme";
+import { ITheme } from "../../Theme";
 
 interface IProps {
   theme: ITheme;
 }
 
-export const Base = styled.div(
+export const Base = styled.button.attrs({ type: "button" })(
   (props: IProps) => `
   width: 100%;
   height: 40px;
@@ -15,6 +15,7 @@ export const Base = styled.div(
   background-color: ${props.theme.colors.brownLight};
   border-radius: 10px;
   cursor: pointer;
+  border: 0px;
 `
 );
 
