@@ -1,6 +1,5 @@
 import React from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
-import FilledButton from "../../buttons/FilledButton";
 import { ButtonContainer } from "../CardContentBuy/styles";
 import {
   BalanceContainer,
@@ -9,6 +8,8 @@ import {
   LogoDarkIcon,
   Title,
 } from "./styles";
+import ModalTrigger from "../../ModalTrigger";
+import RedeemModalContent from "./RedeemModalContent";
 
 const CardContentRedeem: React.FC = () => {
   return (
@@ -45,7 +46,16 @@ const CardContentRedeem: React.FC = () => {
       />
 
       <ButtonContainer>
-        <FilledButton text={"Continuar"} />
+        <ModalTrigger
+          title="Continuar"
+          modal={{
+            title: "Redeem resume",
+            content: RedeemModalContent({
+              totalToBurn: "asd",
+              totalToReceive: "asd",
+            }),
+          }}
+        />
       </ButtonContainer>
     </Container>
   );

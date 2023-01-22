@@ -16,6 +16,7 @@ export const DialogClose = styled(Dialog.Close)`
   background-color: transparent;
   width: 100%;
   border: 0px;
+  cursor: pointer;
 `;
 
 export const CloseIconContainer = styled.div`
@@ -64,6 +65,6 @@ export const DialogTitle = styled(Dialog.Title)(
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 50px;
+  margin-top: 20px;
   gap: 10px;
 `;
