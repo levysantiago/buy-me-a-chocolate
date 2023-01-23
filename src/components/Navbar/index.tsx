@@ -16,7 +16,7 @@ import {
 const Navbar: React.FC = () => {
   const [sideNavOpened, setSideNavOpened] = useState(false);
 
-  const { provider, connect, walletAddress } =
+  const { provider, connect, walletAddress, isNetworkWrong } =
     useContext<IMetamaskContextProps>(MetamaskContext);
 
   async function handleConnect() {
@@ -60,7 +60,11 @@ const Navbar: React.FC = () => {
       </MenuItem>
 
       <MenuItem>
-        <ConnectButton onClick={handleConnect} walletAddress={walletAddress} />
+        <ConnectButton
+          onClick={handleConnect}
+          walletAddress={walletAddress}
+          isNetworkWrong={isNetworkWrong}
+        />
       </MenuItem>
 
       {/* SMALL DEVICES */}

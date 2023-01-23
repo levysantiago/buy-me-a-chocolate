@@ -9,15 +9,17 @@ import {
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   walletAddress?: string;
+  isNetworkWrong?: boolean;
 }
 
 const ConnectButton: React.FC<IProps> = ({
   walletAddress,
+  isNetworkWrong,
   ...rest
 }: IProps) => {
   return (
     <Container {...rest} type="button">
-      {walletAddress ? (
+      {walletAddress && !isNetworkWrong ? (
         <>
           <ConnectButtonWalletIcon />
           <WalletAddressTitle>
@@ -25,7 +27,9 @@ const ConnectButton: React.FC<IProps> = ({
           </WalletAddressTitle>
         </>
       ) : (
-        <Title>Connect Wallet</Title>
+        <Title isNetworkWrong={isNetworkWrong}>
+          {isNetworkWrong ? "Wrong Network" : "Connect Wallet"}
+        </Title>
       )}
     </Container>
   );

@@ -6,9 +6,13 @@ interface IProps {
   theme: ITheme;
 }
 
+interface ITitleProps extends IProps {
+  isNetworkWrong: boolean | undefined;
+}
+
 export const Container = styled.button(
-  (props: IProps) => `
-  background-color: ${props.theme.colors.brownLight};
+  ({ theme }: IProps) => `
+  background-color: ${theme.colors.brownLight};
   border-radius: 100px;
   width: 100%;
   height: 25px;
@@ -23,9 +27,9 @@ export const Container = styled.button(
 );
 
 export const Title = styled.span(
-  (props: IProps) => `
-  font-family: ${props.theme.fonts.title};
-  color: ${props.theme.colors.black};
+  ({ theme, isNetworkWrong }: ITitleProps) => `
+  font-family: ${theme.fonts.title};
+  color: ${isNetworkWrong ? theme.colors.wrong : theme.colors.black};
   font-size: 12px;
 `
 );
