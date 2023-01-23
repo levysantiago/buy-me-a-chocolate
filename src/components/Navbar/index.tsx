@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ConnectButton from "../ConnectButton";
+import { IMetamaskContextProps } from "../context/IMetamaskContextProps";
+import { MetamaskContext } from "../context/MetamaskContext";
 import { BSCLogo, ChocoLogo } from "../icons/styles";
 import {
   Container,
@@ -13,6 +15,17 @@ import {
 
 const Navbar: React.FC = () => {
   const [sideNavOpened, setSideNavOpened] = useState(false);
+
+  const { provider, connect, walletAddress } =
+    useContext<IMetamaskContextProps>(MetamaskContext);
+
+  async function handleConnect() {
+    if (!provider) {
+      window.open("https://metamask.io", "_blank", "noopener noreferrer");
+    } else {
+      await connect();
+    }
+  }
 
   useEffect(() => {
     function handleClickOutside(event: Event) {
@@ -47,7 +60,7 @@ const Navbar: React.FC = () => {
       </MenuItem>
 
       <MenuItem>
-        <ConnectButton walletAddress="0x10ED43C718714eb63d5aA57B78B54704E256024E" />
+        <ConnectButton onClick={handleConnect} walletAddress={walletAddress} />
       </MenuItem>
 
       {/* SMALL DEVICES */}

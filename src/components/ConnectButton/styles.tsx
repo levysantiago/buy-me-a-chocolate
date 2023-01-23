@@ -6,7 +6,7 @@ interface IProps {
   theme: ITheme;
 }
 
-export const Container = styled.div(
+export const Container = styled.button(
   (props: IProps) => `
   background-color: ${props.theme.colors.brownLight};
   border-radius: 100px;
@@ -18,6 +18,7 @@ export const Container = styled.div(
   flex-direction: row;
   cursor: pointer;
   position: relative;
+  border: 0px;
 `
 );
 

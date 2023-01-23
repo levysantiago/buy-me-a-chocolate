@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import abreviateWalletAddress from "../../helpers/abreviateWalletAddress";
 import {
   ConnectButtonWalletIcon,
@@ -7,18 +7,21 @@ import {
   WalletAddressTitle,
 } from "./styles";
 
-interface IProps {
+interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   walletAddress?: string;
 }
 
-const ConnectButton: React.FC<IProps> = (props: IProps) => {
+const ConnectButton: React.FC<IProps> = ({
+  walletAddress,
+  ...rest
+}: IProps) => {
   return (
-    <Container>
-      {props.walletAddress ? (
+    <Container {...rest} type="button">
+      {walletAddress ? (
         <>
           <ConnectButtonWalletIcon />
           <WalletAddressTitle>
-            {abreviateWalletAddress(props.walletAddress)}
+            {abreviateWalletAddress(walletAddress)}
           </WalletAddressTitle>
         </>
       ) : (

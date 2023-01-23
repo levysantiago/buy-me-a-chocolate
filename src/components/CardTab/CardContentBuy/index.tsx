@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
 import RoundChocoButton from "../../buttons/RoundChocoButton";
 import { ButtonContainer, Container, RoundButtonsContainer } from "./styles";
@@ -9,10 +9,6 @@ import BuyModalContent from "./BuyModalContent";
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3);
   const [chocAmount, setChocAmount] = useState("");
-
-  useEffect(() => {
-    console.log(chocAmount);
-  }, [chocAmount]);
 
   return (
     <Container>
