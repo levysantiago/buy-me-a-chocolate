@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogClose,
   Overlay,
-  DialogTrigger,
   DialogTitle,
   ButtonsContainer,
   CloseIconContainer,
@@ -23,9 +22,7 @@ interface IModalTriggerProps {
 const ModalTrigger = ({ title, modal }: IModalTriggerProps) => {
   return (
     <Dialog.Root>
-      <DialogTrigger type="button">
-        <FilledButton text={title} />
-      </DialogTrigger>
+      <FilledButton text={title} isModalTrigger />
 
       <Dialog.Portal>
         <Dialog.Overlay>
@@ -45,12 +42,10 @@ const ModalTrigger = ({ title, modal }: IModalTriggerProps) => {
             {modal.content}
 
             <ButtonsContainer>
-              <DialogClose>
-                <UnfilledButton text="Cancelar" />
-              </DialogClose>
-              <DialogClose>
-                <FilledButton text="Confirmar" />
-              </DialogClose>
+              {/* <DialogClose></DialogClose>
+              <DialogClose></DialogClose> */}
+              <UnfilledButton text="Cancelar" isModalClose />
+              <FilledButton text="Confirmar" isModalClose />
             </ButtonsContainer>
           </div>
         </DialogContent>

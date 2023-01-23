@@ -19,11 +19,19 @@ interface IProps {
   setValue: (newValue: string) => void;
   identifier?: string;
   helperText?: string;
+  disabled?: boolean;
 }
 
-const DetailedInput: React.FC<IProps> = (props: IProps) => {
-  const { id, title, value, setValue, identifier, helperText, type } = props;
-
+const DetailedInput: React.FC<IProps> = ({
+  id,
+  title,
+  value,
+  setValue,
+  identifier,
+  helperText,
+  type,
+  disabled = false,
+}: IProps) => {
   return (
     <Container>
       {/* Title */}
@@ -31,7 +39,7 @@ const DetailedInput: React.FC<IProps> = (props: IProps) => {
 
       {/* Input base */}
       <Base>
-        <InsideBase borderRadiusCurved={!identifier}>
+        <InsideBase borderRadiusCurved={!identifier} disabled={disabled}>
           <Input
             id={id}
             type={type}
@@ -39,13 +47,14 @@ const DetailedInput: React.FC<IProps> = (props: IProps) => {
             onChange={(e) => {
               setValue(e.target.value);
             }}
+            disabled={disabled}
           />
         </InsideBase>
 
         {/* Identifier */}
         {identifier ? (
-          <IdentifierContainer>
-            <IdentifierText>{identifier}</IdentifierText>
+          <IdentifierContainer disabled={disabled}>
+            <IdentifierText disabled={disabled}>{identifier}</IdentifierText>
           </IdentifierContainer>
         ) : null}
       </Base>

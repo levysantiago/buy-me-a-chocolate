@@ -7,6 +7,15 @@ interface IProps {
 
 interface IBaseProps extends IProps {
   borderRadiusCurved: boolean | undefined;
+  disabled: boolean | undefined;
+}
+
+interface IInputProps extends IProps {
+  disabled: boolean | undefined;
+}
+
+interface IIdentifierProps extends IProps {
+  disabled: boolean | undefined;
 }
 
 export const Container = styled.div`
@@ -36,12 +45,14 @@ export const Base = styled.div(
 );
 
 export const InsideBase = styled.div(
-  (props: IBaseProps) => `
+  ({ theme, disabled, borderRadiusCurved }: IBaseProps) => `
   height: 50px;
   width: 100%;
   background-color: transparent;
-  border: 1px ${props.theme.colors.brownLight} solid;
-  border-radius: ${props.borderRadiusCurved ? "14px" : "14px 0px 0px 14px"};
+  border: 1px ${
+    disabled ? theme.colors.brownLight2 : theme.colors.brownLight
+  } solid;
+  border-radius: ${borderRadiusCurved ? "14px" : "14px 0px 0px 14px"};
   padding: 0px 20px;
   display: flex;
   align-items: center;
@@ -51,24 +62,28 @@ export const InsideBase = styled.div(
 );
 
 export const Input = styled.input(
-  (props: IProps) => `
+  ({ theme, disabled }: IInputProps) => `
   width: 100%;
   background-color: transparent;
   border: none;
   font-family: "Roboto-Regular";
   font-size: 14px;
-  color: ${props.theme.colors.brownLight};
+  color: ${disabled ? theme.colors.brownLight2 : theme.colors.brownLight};
   outline: none;
   height: 20px;
 `
 );
 
 export const IdentifierContainer = styled.div(
-  (props: IProps) => `
+  ({ theme, disabled }: IIdentifierProps) => `
   width: 80px;
   height: 100%;
-  background-color: ${props.theme.colors.brownLight};
-  border: 1px ${props.theme.colors.brownLight} solid;
+  background-color: ${
+    disabled ? theme.colors.brownLight2 : theme.colors.brownLight
+  };
+  border: 1px ${
+    disabled ? theme.colors.brownLight2 : theme.colors.brownLight
+  } solid;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,10 +92,10 @@ export const IdentifierContainer = styled.div(
 );
 
 export const IdentifierText = styled.span(
-  (props: IProps) => `
+  ({ theme, disabled }: IIdentifierProps) => `
   font-family: "Roboto-Regular";
   font-size: 14px;
-  color: ${props.theme.colors.brown};
+  color: ${disabled ? theme.colors.brownLight : theme.colors.brown};
 `
 );
 

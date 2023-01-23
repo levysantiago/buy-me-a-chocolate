@@ -32,12 +32,6 @@ export const CloseIcon = styled.img.attrs({
   width: 15px;
 `;
 
-export const DialogTrigger = styled(Dialog.Trigger)`
-  background-color: transparent;
-  width: 100%;
-  border: 0;
-`;
-
 export const DialogContent = styled(Dialog.Content)(
   (props: IProps) => `
   position: absolute;

@@ -26,7 +26,7 @@ const CardContentRedeem: React.FC = () => {
         value={""}
         type={"number"}
         setValue={() => {}}
-        identifier="BUSD"
+        identifier="CHOC"
         helperText="Available: 123"
       />
 
