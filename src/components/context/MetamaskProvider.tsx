@@ -1,5 +1,7 @@
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
+import ChocTokenRepository from "../../repositories/ChocTokenRepository";
+import { IChocTokenRepository } from "../../repositories/ChocTokenRepository/IChocTokenRepository";
 import { MetamaskContext } from "./MetamaskContext";
 
 export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
@@ -11,6 +13,8 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   const [walletAddress, setWalletAddress] = useState("");
   const [isConnected, setIsConnected] = useState(false);
   const [isNetworkWrong, setIsNetworkWrong] = useState(false);
+  const [chocTokenRepository, setChocTokenRepository] =
+    useState<IChocTokenRepository>();
 
   async function connect(): Promise<string[] | undefined> {
     if (window.ethereum) {
@@ -51,6 +55,8 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
     if (provider && provider.network) {
       const chainId = `0x${provider.network.chainId.toString(16)}`;
       verifyNetwork(chainId);
+      const _chocTokenRepository = new ChocTokenRepository(provider);
+      setChocTokenRepository(_chocTokenRepository);
     }
   }, [provider, walletAddress]);
 
@@ -85,6 +91,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         isConnected,
         walletAddress,
         isNetworkWrong,
+        chocTokenRepository,
       }}
     >
       {children}

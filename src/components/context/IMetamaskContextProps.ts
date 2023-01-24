@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { IChocTokenRepository } from "../../repositories/ChocTokenRepository/IChocTokenRepository";
 
 export interface IMetamaskContextProps {
   provider: ethers.providers.Web3Provider | undefined;
@@ -7,4 +8,5 @@ export interface IMetamaskContextProps {
   isConnected: boolean;
   walletAddress: string;
   isNetworkWrong: boolean;
+  chocTokenRepository?: IChocTokenRepository;
 }

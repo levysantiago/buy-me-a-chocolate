@@ -11,4 +11,5 @@ export const MetamaskContext = createContext<IMetamaskContextProps>({
   isConnected: false,
   walletAddress: "",
   isNetworkWrong: false,
+  chocTokenRepository: undefined,
 });

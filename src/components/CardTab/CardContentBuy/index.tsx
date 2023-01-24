@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
 import RoundChocoButton from "../../buttons/RoundChocoButton";
 import { ButtonContainer, Container, RoundButtonsContainer } from "./styles";
 import { Title } from "./styles";
 import ModalTrigger from "../../ModalTrigger";
 import BuyModalContent from "./BuyModalContent";
+import { BigNumber, ethers } from "ethers";
+import { MetamaskContext } from "../../context/MetamaskContext";
 
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3);
   const [chocAmount, setChocAmount] = useState("");
+  const { isConnected, provider, walletAddress, chocTokenRepository } =
+    useContext(MetamaskContext);
+
+  useEffect(() => {
+    if (isConnected && walletAddress && chocTokenRepository) {
+      chocTokenRepository
+        .balanceOf(walletAddress)
+        .then((balance: BigNumber) => {
+          console.log(ethers.BigNumber.from(balance).toString());
+        });
+    }
+  }, [provider, isConnected, chocTokenRepository]);
 
   return (
     <Container>
