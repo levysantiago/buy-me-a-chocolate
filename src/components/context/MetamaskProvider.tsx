@@ -2,6 +2,8 @@ import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import ChocTokenRepository from "../../repositories/ChocTokenRepository";
 import { IChocTokenRepository } from "../../repositories/ChocTokenRepository/IChocTokenRepository";
+import CryptoRepository from "../../repositories/CryptoRepository.ts";
+import { ICryptoRepository } from "../../repositories/CryptoRepository.ts/ICryptoRepository";
 import { MetamaskContext } from "./MetamaskContext";
 
 export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
@@ -15,6 +17,8 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   const [isNetworkWrong, setIsNetworkWrong] = useState(false);
   const [chocTokenRepository, setChocTokenRepository] =
     useState<IChocTokenRepository>();
+
+  const [cryptoRepository, setCryptoRepository] = useState<ICryptoRepository>();
 
   async function connect(): Promise<string[] | undefined> {
     if (window.ethereum) {
@@ -55,8 +59,12 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
     if (provider && provider.network) {
       const chainId = `0x${provider.network.chainId.toString(16)}`;
       verifyNetwork(chainId);
+
+      // Creating repositories
       const _chocTokenRepository = new ChocTokenRepository(provider);
       setChocTokenRepository(_chocTokenRepository);
+      const _cryptoRepository = new CryptoRepository(provider);
+      setCryptoRepository(_cryptoRepository);
     }
   }, [provider, walletAddress]);
 
@@ -92,6 +100,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         walletAddress,
         isNetworkWrong,
         chocTokenRepository,
+        cryptoRepository,
       }}
     >
       {children}

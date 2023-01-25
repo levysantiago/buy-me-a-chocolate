@@ -11,18 +11,52 @@ import { MetamaskContext } from "../../context/MetamaskContext";
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3);
   const [chocAmount, setChocAmount] = useState("");
-  const { isConnected, provider, walletAddress, chocTokenRepository } =
-    useContext(MetamaskContext);
+  const [chocBalance, setChocBalance] = useState("");
+  const [cryptoBalance, setCryptoBalance] = useState("...");
+  const {
+    isConnected,
+    provider,
+    walletAddress,
+    chocTokenRepository,
+    cryptoRepository,
+  } = useContext(MetamaskContext);
 
-  useEffect(() => {
-    if (isConnected && walletAddress && chocTokenRepository) {
+  function fetchBalances() {
+    if (
+      isConnected &&
+      walletAddress &&
+      chocTokenRepository &&
+      cryptoRepository
+    ) {
+      // Fetch choc balance
       chocTokenRepository
         .balanceOf(walletAddress)
         .then((balance: BigNumber) => {
-          console.log(ethers.BigNumber.from(balance).toString());
+          const _chocBalance = Number(
+            ethers.utils.formatEther(balance)
+          ).toFixed(3);
+          setChocBalance(_chocBalance);
         });
+
+      // Fetch crypto balance
+      cryptoRepository.balanceOf(walletAddress).then((balance: BigNumber) => {
+        const _cryptoBalance = Number(
+          ethers.utils.formatEther(balance)
+        ).toFixed(3);
+        setCryptoBalance(_cryptoBalance);
+      });
     }
-  }, [provider, isConnected, chocTokenRepository]);
+  }
+
+  useEffect(() => {
+    fetchBalances();
+  }, [
+    provider,
+    isConnected,
+    chocTokenRepository,
+    walletAddress,
+    fetchBalances,
+  ]);
 
   return (
     <Container>
@@ -65,7 +99,7 @@ const CardContentBuy: React.FC = () => {
         type={"number"}
         setValue={() => {}}
         identifier="BUSD"
-        helperText="Available: 123"
+        helperText={`Available: ${cryptoBalance}`}
       />
 
       <DetailedInput
