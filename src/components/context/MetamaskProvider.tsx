@@ -111,8 +111,6 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   return (
     <MetamaskContext.Provider
       value={{
-        provider,
-        setProvider,
         connect,
         isConnected,
         walletAddress,

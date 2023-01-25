@@ -16,11 +16,11 @@ import {
 const Navbar: React.FC = () => {
   const [sideNavOpened, setSideNavOpened] = useState(false);
 
-  const { provider, connect, walletAddress, isNetworkWrong, chocBalance } =
+  const { connect, walletAddress, isNetworkWrong, chocBalance } =
     useContext<IMetamaskContextProps>(MetamaskContext);
 
   async function handleConnect() {
-    if (!provider) {
+    if (!walletAddress) {
       window.open("https://metamask.io", "_blank", "noopener noreferrer");
     } else {
       await connect();

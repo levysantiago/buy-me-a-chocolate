@@ -11,6 +11,12 @@ class BuyMeAChocolate {
     this.provider = provider;
   }
 
+  private validate() {
+    if (!this.buyChocolateContract) {
+      throw new Error("Buy Chocolate Contract not defined");
+    }
+  }
+
   async init(provider: Web3Provider): Promise<void> {
     this.provider = provider;
 
@@ -20,14 +26,20 @@ class BuyMeAChocolate {
     );
   }
 
-  async buyChocolate(cryptoAmount: string, to_address: string): Promise<void> {
-    if (!this.buyChocolateContract) {
-      throw new Error("Buy Chocolate Contract not defined");
-    }
-
-    await this.buyChocolateContract.buyToWithBNB(to_address, {
+  public async buyChocolate(
+    cryptoAmount: string,
+    to_address: string
+  ): Promise<void> {
+    this.validate();
+    await this.buyChocolateContract!.buyToWithBNB(to_address, {
       value: ethers.utils.parseEther(cryptoAmount),
     });
+  }
+
+  public async getPrice(): Promise<string> {
+    this.validate();
+    const price = await this.buyChocolateContract!.getPrice();
+    return ethers.utils.formatEther(price);
   }
 }
 
