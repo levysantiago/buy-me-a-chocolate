@@ -1,4 +1,4 @@
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 import { ICryptoRepository } from "./ICryptoRepository";
 
 class CryptoRepository implements ICryptoRepository {
@@ -12,8 +12,9 @@ class CryptoRepository implements ICryptoRepository {
     this.provider = provider;
   }
 
-  balanceOf(address: string): Promise<BigNumber> {
-    return this.provider.getBalance(address);
+  async balanceOf(address: string): Promise<string> {
+    const balance = await this.provider.getBalance(address);
+    return ethers.utils.formatEther(balance);
   }
 }
 
