@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 
-export interface IChocTokenRepository {
+export interface IBuyMeAChoclateRepository {
   init(provider: ethers.providers.Web3Provider): void;
-  balanceOf(address: string): Promise<string>;
+  buyToWithBNB: () => void;
 }

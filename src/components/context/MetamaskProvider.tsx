@@ -59,14 +59,10 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   useEffect(() => {
     if (walletAddress && chocTokenRepository && cryptoRepository) {
       // Fetch choc balance
-      chocTokenRepository
-        .balanceOf(walletAddress)
-        .then((balance: BigNumber) => {
-          const _chocBalance = Number(
-            ethers.utils.formatEther(balance)
-          ).toFixed(3);
-          setChocBalance(_chocBalance);
-        });
+      chocTokenRepository.balanceOf(walletAddress).then((balance: string) => {
+        const _chocBalance = Number(balance).toFixed(3);
+        setChocBalance(_chocBalance);
+      });
 
       // Fetch crypto balance
       cryptoRepository.balanceOf(walletAddress).then((balance: BigNumber) => {
