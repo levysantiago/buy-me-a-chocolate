@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
 import { ButtonContainer } from "../CardContentBuy/styles";
 import {
@@ -10,15 +10,18 @@ import {
 } from "./styles";
 import ModalTrigger from "../../ModalTrigger";
 import RedeemModalContent from "./RedeemModalContent";
+import { MetamaskContext } from "../../context/MetamaskContext";
 
 const CardContentRedeem: React.FC = () => {
+  const { chocBalance } = useContext(MetamaskContext);
+
   return (
     <Container>
       <Title>Redeem reward</Title>
 
       <BalanceContainer>
         <LogoDarkIcon />
-        <BalanceTitle>3.123</BalanceTitle>
+        <BalanceTitle>{chocBalance}</BalanceTitle>
       </BalanceContainer>
 
       <DetailedInput
@@ -27,7 +30,7 @@ const CardContentRedeem: React.FC = () => {
         type={"number"}
         setValue={() => {}}
         identifier="CHOC"
-        helperText="Available: 123"
+        helperText={`Available: ${chocBalance}`}
       />
 
       <DetailedInput

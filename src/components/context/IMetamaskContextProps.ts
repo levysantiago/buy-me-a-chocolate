@@ -11,4 +11,6 @@ export interface IMetamaskContextProps {
   isNetworkWrong: boolean;
   chocTokenRepository?: IChocTokenRepository;
   cryptoRepository?: ICryptoRepository;
+  chocBalance: string;
+  cryptoBalance: string;
 }

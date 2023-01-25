@@ -1,4 +1,3 @@
-import { BigNumber, ethers } from "ethers";
 import React, { useContext, useEffect, useState } from "react";
 import ConnectButton from "../ConnectButton";
 import { IMetamaskContextProps } from "../context/IMetamaskContextProps";
@@ -16,15 +15,9 @@ import {
 
 const Navbar: React.FC = () => {
   const [sideNavOpened, setSideNavOpened] = useState(false);
-  const [chocTokenBalance, setChocTokenBalance] = useState("...");
 
-  const {
-    provider,
-    connect,
-    walletAddress,
-    isNetworkWrong,
-    chocTokenRepository,
-  } = useContext<IMetamaskContextProps>(MetamaskContext);
+  const { provider, connect, walletAddress, isNetworkWrong, chocBalance } =
+    useContext<IMetamaskContextProps>(MetamaskContext);
 
   async function handleConnect() {
     if (!provider) {
@@ -53,25 +46,12 @@ const Navbar: React.FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (walletAddress && chocTokenRepository) {
-      chocTokenRepository
-        .balanceOf(walletAddress)
-        .then((balance: BigNumber) => {
-          const _chocBalance = Number(
-            ethers.utils.formatEther(balance)
-          ).toFixed(3);
-          setChocTokenBalance(_chocBalance);
-        });
-    }
-  }, [provider, chocTokenRepository, setChocTokenBalance, walletAddress]);
-
   return (
     <Container>
       {/* BIG DEVICES */}
       <MenuItem>
         <ChocoLogo />
-        <ItemText>{chocTokenBalance}</ItemText>
+        <ItemText>{chocBalance}</ItemText>
       </MenuItem>
 
       <MenuItem>
@@ -99,7 +79,7 @@ const Navbar: React.FC = () => {
       <Sidenav id="sidenav" {...{ sideNavOpened }}>
         <SidenavItem>
           <ChocoLogo />
-          <ItemText>{chocTokenBalance}</ItemText>
+          <ItemText>{chocBalance}</ItemText>
         </SidenavItem>
 
         <SidenavItem>

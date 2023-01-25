@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import ChocTokenRepository from "../../repositories/ChocTokenRepository";
 import { IChocTokenRepository } from "../../repositories/ChocTokenRepository/IChocTokenRepository";
@@ -17,8 +17,9 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   const [isNetworkWrong, setIsNetworkWrong] = useState(false);
   const [chocTokenRepository, setChocTokenRepository] =
     useState<IChocTokenRepository>();
-
   const [cryptoRepository, setCryptoRepository] = useState<ICryptoRepository>();
+  const [chocBalance, setChocBalance] = useState("...");
+  const [cryptoBalance, setCryptoBalance] = useState("...");
 
   async function connect(): Promise<string[] | undefined> {
     if (window.ethereum) {
@@ -54,6 +55,28 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
       return provider;
     }
   }
+
+  useEffect(() => {
+    if (walletAddress && chocTokenRepository && cryptoRepository) {
+      // Fetch choc balance
+      chocTokenRepository
+        .balanceOf(walletAddress)
+        .then((balance: BigNumber) => {
+          const _chocBalance = Number(
+            ethers.utils.formatEther(balance)
+          ).toFixed(3);
+          setChocBalance(_chocBalance);
+        });
+
+      // Fetch crypto balance
+      cryptoRepository.balanceOf(walletAddress).then((balance: BigNumber) => {
+        const _cryptoBalance = Number(
+          ethers.utils.formatEther(balance)
+        ).toFixed(3);
+        setCryptoBalance(_cryptoBalance);
+      });
+    }
+  }, [walletAddress, chocTokenRepository, cryptoRepository]);
 
   useEffect(() => {
     if (provider && provider.network) {
@@ -99,8 +122,8 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         isConnected,
         walletAddress,
         isNetworkWrong,
-        chocTokenRepository,
-        cryptoRepository,
+        chocBalance,
+        cryptoBalance,
       }}
     >
       {children}

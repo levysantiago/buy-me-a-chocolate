@@ -1,62 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import DetailedInput from "../../Inputs/DetailedInput";
 import RoundChocoButton from "../../buttons/RoundChocoButton";
 import { ButtonContainer, Container, RoundButtonsContainer } from "./styles";
 import { Title } from "./styles";
 import ModalTrigger from "../../ModalTrigger";
 import BuyModalContent from "./BuyModalContent";
-import { BigNumber, ethers } from "ethers";
 import { MetamaskContext } from "../../context/MetamaskContext";
 
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3);
   const [chocAmount, setChocAmount] = useState("");
-  const [chocBalance, setChocBalance] = useState("");
-  const [cryptoBalance, setCryptoBalance] = useState("...");
-  const {
-    isConnected,
-    provider,
-    walletAddress,
-    chocTokenRepository,
-    cryptoRepository,
-  } = useContext(MetamaskContext);
-
-  function fetchBalances() {
-    if (
-      isConnected &&
-      walletAddress &&
-      chocTokenRepository &&
-      cryptoRepository
-    ) {
-      // Fetch choc balance
-      chocTokenRepository
-        .balanceOf(walletAddress)
-        .then((balance: BigNumber) => {
-          const _chocBalance = Number(
-            ethers.utils.formatEther(balance)
-          ).toFixed(3);
-          setChocBalance(_chocBalance);
-        });
-
-      // Fetch crypto balance
-      cryptoRepository.balanceOf(walletAddress).then((balance: BigNumber) => {
-        const _cryptoBalance = Number(
-          ethers.utils.formatEther(balance)
-        ).toFixed(3);
-        setCryptoBalance(_cryptoBalance);
-      });
-    }
-  }
-
-  useEffect(() => {
-    fetchBalances();
-  }, [
-    provider,
-    isConnected,
-    chocTokenRepository,
-    walletAddress,
-    fetchBalances,
-  ]);
+  const { cryptoBalance } = useContext(MetamaskContext);
 
   return (
     <Container>
