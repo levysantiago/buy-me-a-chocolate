@@ -1,9 +1,10 @@
-import React, { ButtonHTMLAttributes } from "react";
-import { Base, ChocoIcon, Text } from "./styles";
+/* eslint-disable no-undef */
+import React, { ButtonHTMLAttributes } from 'react'
+import { Base, ChocoIcon, Text } from './styles'
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  text: string;
-  isSelected?: boolean;
+  text: string
+  isSelected?: boolean
 }
 
 const RoundChocoButton: React.FC<IProps> = ({
@@ -16,7 +17,7 @@ const RoundChocoButton: React.FC<IProps> = ({
       <Text isSelected={isSelected}>{text}</Text>
       <ChocoIcon />
     </Base>
-  );
-};
+  )
+}
 
-export default RoundChocoButton;
+export default RoundChocoButton

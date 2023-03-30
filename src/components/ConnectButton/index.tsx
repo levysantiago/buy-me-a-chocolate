@@ -1,15 +1,16 @@
-import React, { ButtonHTMLAttributes } from "react";
-import abreviateWalletAddress from "../../helpers/abreviateWalletAddress";
+/* eslint-disable no-undef */
+import React, { ButtonHTMLAttributes } from 'react'
+import abreviateWalletAddress from '../../helpers/abreviateWalletAddress'
 import {
   ConnectButtonWalletIcon,
   Container,
   Title,
   WalletAddressTitle,
-} from "./styles";
+} from './styles'
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  walletAddress?: string;
-  isNetworkWrong?: boolean;
+  walletAddress?: string
+  isNetworkWrong?: boolean
 }
 
 const ConnectButton: React.FC<IProps> = ({
@@ -28,11 +29,11 @@ const ConnectButton: React.FC<IProps> = ({
         </>
       ) : (
         <Title isNetworkWrong={isNetworkWrong}>
-          {isNetworkWrong ? "Wrong Network" : "Connect Wallet"}
+          {isNetworkWrong ? 'Wrong Network' : 'Connect Wallet'}
         </Title>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default ConnectButton;
+export default ConnectButton

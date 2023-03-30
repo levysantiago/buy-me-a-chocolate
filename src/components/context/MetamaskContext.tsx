@@ -1,15 +1,17 @@
-import { createContext } from "react";
-import { IMetamaskContextProps } from "./IMetamaskContextProps";
+/* eslint-disable prettier/prettier */
+import { createContext } from 'react'
+import { IMetamaskContextProps } from './IMetamaskContextProps'
 
 export const MetamaskContext = createContext<IMetamaskContextProps>({
   connect: () => {
-    return new Promise(() => {});
+    return new Promise(() => { })
   },
   isConnected: false,
-  walletAddress: "",
+  walletAddress: '',
   isNetworkWrong: false,
   chocTokenRepository: undefined,
+  buyMeAChocolateRepository: undefined,
   cryptoRepository: undefined,
-  chocBalance: "...",
-  cryptoBalance: "...",
-});
+  chocBalance: '...',
+  cryptoBalance: '...',
+})

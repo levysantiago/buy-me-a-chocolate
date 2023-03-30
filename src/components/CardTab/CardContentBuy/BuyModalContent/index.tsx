@@ -1,9 +1,9 @@
-import { Attribute, Container, Topic } from "./styles";
+import { Attribute, Container, Topic } from './styles'
 
 interface IBuyModalContentProps {
-  totalToSpend: string;
-  totalToSend: string;
-  fee: string;
+  totalToSpend: string
+  totalToSend: string
+  fee: string
 }
 
 const BuyModalContent = ({
@@ -20,15 +20,15 @@ const BuyModalContent = ({
 
       <Topic>
         {`We will send: `}
-        <Attribute>{totalToSpend}</Attribute>
+        <Attribute>{totalToSend}</Attribute>
       </Topic>
 
       <Topic>
         {`Service fee: `}
-        <Attribute>{totalToSpend}</Attribute>
+        <Attribute>{fee}</Attribute>
       </Topic>
     </Container>
-  );
-};
+  )
+}
 
-export default BuyModalContent;
+export default BuyModalContent

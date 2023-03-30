@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { ITheme } from "../../Theme";
-import * as Dialog from "@radix-ui/react-dialog";
+import styled from 'styled-components'
+import { ITheme } from '../../Theme'
+import * as Dialog from '@radix-ui/react-dialog'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 export const BaseContainer = styled.div`
@@ -19,19 +19,19 @@ export const BaseContainer = styled.div`
     cursor: pointer;
     border: 0px;
   }
-`;
+`
 
 export const Text = styled.span(
   (props: IProps) => `
   font-family: "Roboto-Medium";
   font-size: 12px;
   color: ${props.theme.colors.orange};
-`
-);
+`,
+)
 
 export const DialogClose = styled(Dialog.Close)`
   background-color: transparent;
   width: 100%;
   border: 0px;
   cursor: pointer;
-`;
+`

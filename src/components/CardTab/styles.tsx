@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { ITheme } from "../Theme";
+import styled from 'styled-components'
+import { ITheme } from '../Theme'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 interface ITabSelectorProps extends IProps {
-  isVisible: boolean;
+  isVisible: boolean
 }
 
 export const Container = styled.div(
@@ -16,13 +16,13 @@ export const Container = styled.div(
   height: 550px;
   border-radius: 40px;
   padding: 30px 40px;
-`
-);
+`,
+)
 
 export const TabsContainer = styled.div`
   display: flex;
   flex-direction: row;
-`;
+`
 
 export const TabTitleContainer = styled.div`
   display: flex;
@@ -32,16 +32,16 @@ export const TabTitleContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`;
+`
 
 export const TabSelector = styled.div(
   (props: ITabSelectorProps) => `
   width: 100%;
   height: 2px;
   background-color: ${props.theme.colors.orange};
-  visibility: ${props.isVisible ? "visible" : "hidden"};
-`
-);
+  visibility: ${props.isVisible ? 'visible' : 'hidden'};
+`,
+)
 
 export const TabTitle = styled.span(
   (props: IProps) => `
@@ -49,5 +49,5 @@ export const TabTitle = styled.span(
   font-size: 12px;
   color: ${props.theme.colors.white};
   margin-bottom: 3px;
-`
-);
+`,
+)

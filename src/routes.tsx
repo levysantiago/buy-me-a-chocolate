@@ -1,6 +1,5 @@
-import React from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/Home";
+import { HashRouter, Route, Routes } from 'react-router-dom'
+import HomePage from './pages/Home'
 
 const MyRoutes = (
   <HashRouter>
@@ -8,6 +7,6 @@ const MyRoutes = (
       <Route path="/" element={<HomePage />} />
     </Routes>
   </HashRouter>
-);
+)
 
-export default MyRoutes;
+export default MyRoutes

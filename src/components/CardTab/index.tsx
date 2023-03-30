@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import CardContentBuy from "./CardContentBuy";
-import CardContentRedeem from "./CardContentRedeem";
+import React, { useState } from 'react'
+import CardContentBuy from './CardContentBuy'
+import CardContentRedeem from './CardContentRedeem'
 import {
   Container,
   TabsContainer,
   TabSelector,
   TabTitle,
   TabTitleContainer,
-} from "./styles";
+} from './styles'
 
 const CardTab: React.FC = () => {
-  const [tabSelected, setTabSelected] = useState(1);
+  const [tabSelected, setTabSelected] = useState(1)
 
   return (
     <Container>
@@ -18,7 +18,7 @@ const CardTab: React.FC = () => {
         {/* TAB 1 */}
         <TabTitleContainer
           onClick={() => {
-            setTabSelected(1);
+            setTabSelected(1)
           }}
         >
           <TabTitle>Buy</TabTitle>
@@ -28,7 +28,7 @@ const CardTab: React.FC = () => {
         {/* TAB 2 */}
         <TabTitleContainer
           onClick={() => {
-            setTabSelected(2);
+            setTabSelected(2)
           }}
         >
           <TabTitle>Redeem</TabTitle>
@@ -39,7 +39,7 @@ const CardTab: React.FC = () => {
       {/* CARD CONTENT */}
       {tabSelected === 1 ? <CardContentBuy /> : <CardContentRedeem />}
     </Container>
-  );
-};
+  )
+}
 
-export default CardTab;
+export default CardTab

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import ConnectButton from "../ConnectButton";
-import { IMetamaskContextProps } from "../context/IMetamaskContextProps";
-import { MetamaskContext } from "../context/MetamaskContext";
-import { BSCLogo, ChocoLogo } from "../icons/styles";
+import React, { useContext, useEffect, useState } from 'react'
+import ConnectButton from '../ConnectButton'
+import { IMetamaskContextProps } from '../context/IMetamaskContextProps'
+import { MetamaskContext } from '../context/MetamaskContext'
+import { BSCLogo, ChocoLogo } from '../icons/styles'
 import {
   Container,
   ItemText,
@@ -11,40 +11,40 @@ import {
   NavMenu,
   Sidenav,
   SidenavItem,
-} from "./styles";
+} from './styles'
 
 const Navbar: React.FC = () => {
-  const [sideNavOpened, setSideNavOpened] = useState(false);
+  const [sideNavOpened, setSideNavOpened] = useState(false)
 
   const { connect, walletAddress, isNetworkWrong, chocBalance } =
-    useContext<IMetamaskContextProps>(MetamaskContext);
+    useContext<IMetamaskContextProps>(MetamaskContext)
 
   async function handleConnect() {
-    if (!walletAddress) {
-      window.open("https://metamask.io", "_blank", "noopener noreferrer");
+    if (!window.ethereum && !walletAddress) {
+      window.open('https://metamask.io', '_blank', 'noopener noreferrer')
     } else {
-      await connect();
+      await connect()
     }
   }
 
   useEffect(() => {
     function handleClickOutside(event: Event) {
-      const children = Array.prototype.slice.call(ref?.children);
+      const children = Array.prototype.slice.call(ref?.children)
       if (event.target !== ref && !children.includes(event.target)) {
-        setSideNavOpened(false);
+        setSideNavOpened(false)
       }
     }
 
-    const ref = document.getElementById("sidenav");
+    const ref = document.getElementById('sidenav')
     if (ref) {
       // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
       return () => {
         // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
     }
-  }, []);
+  }, [])
 
   return (
     <Container>
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
       {/* SMALL DEVICES */}
       <NavMenu
         onClick={() => {
-          setSideNavOpened(!sideNavOpened);
+          setSideNavOpened(!sideNavOpened)
         }}
       >
         <MenuIcon />
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
         </SidenavItem>
       </Sidenav>
     </Container>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

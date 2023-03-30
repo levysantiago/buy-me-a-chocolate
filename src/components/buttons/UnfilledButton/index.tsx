@@ -1,10 +1,10 @@
-import React from "react";
-import { BaseContainer, DialogClose, Text } from "./styles";
+import React from 'react'
+import { BaseContainer, DialogClose, Text } from './styles'
 
 interface IProps {
-  text: string;
-  onClick?: () => void;
-  isModalClose?: boolean;
+  text: string
+  onClick?: () => void
+  isModalClose?: boolean
 }
 
 const UnfilledButton: React.FC<IProps> = ({
@@ -19,7 +19,7 @@ const UnfilledButton: React.FC<IProps> = ({
           <Text>{text}</Text>
         </DialogClose>
       </BaseContainer>
-    );
+    )
   } else {
     return (
       <BaseContainer onClick={onClick}>
@@ -27,8 +27,8 @@ const UnfilledButton: React.FC<IProps> = ({
           <Text>{text}</Text>
         </button>
       </BaseContainer>
-    );
+    )
   }
-};
+}
 
-export default UnfilledButton;
+export default UnfilledButton

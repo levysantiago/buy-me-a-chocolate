@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable no-undef */
+import React from 'react'
 import {
   Base,
   Container,
@@ -9,24 +10,24 @@ import {
   Input,
   InsideBase,
   Title,
-} from "./styles";
+} from './styles'
 
 interface IProps {
-  id?: string;
-  title: string;
-  value: string;
-  type: "number" | "text";
-  setValue: (newValue: string) => void;
-  identifier?: string;
-  helperText?: string;
-  disabled?: boolean;
+  id?: string
+  title: string
+  value: string
+  type: 'number' | 'text'
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+  identifier?: string
+  helperText?: string
+  disabled?: boolean
 }
 
 const DetailedInput: React.FC<IProps> = ({
   id,
   title,
   value,
-  setValue,
+  onChange,
   identifier,
   helperText,
   type,
@@ -44,9 +45,7 @@ const DetailedInput: React.FC<IProps> = ({
             id={id}
             type={type}
             value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
+            onChange={onChange}
             disabled={disabled}
           />
         </InsideBase>
@@ -66,7 +65,7 @@ const DetailedInput: React.FC<IProps> = ({
         </HelperTextContainer>
       ) : null}
     </Container>
-  );
-};
+  )
+}
 
-export default DetailedInput;
+export default DetailedInput

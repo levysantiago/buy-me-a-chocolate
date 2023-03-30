@@ -1,11 +1,11 @@
-import React from "react";
-import { BaseContainer, DialogClose, DialogTrigger, Text } from "./styles";
+import React from 'react'
+import { BaseContainer, DialogClose, DialogTrigger, Text } from './styles'
 
 interface IProps {
-  text: string;
-  onClick?: () => void;
-  isModalTrigger?: boolean;
-  isModalClose?: boolean;
+  text: string
+  onClick?: () => void
+  isModalTrigger?: boolean
+  isModalClose?: boolean
 }
 
 const FilledButton: React.FC<IProps> = ({
@@ -21,7 +21,7 @@ const FilledButton: React.FC<IProps> = ({
           <Text>{text}</Text>
         </DialogTrigger>
       </BaseContainer>
-    );
+    )
   } else if (isModalClose) {
     return (
       <BaseContainer>
@@ -29,7 +29,7 @@ const FilledButton: React.FC<IProps> = ({
           <Text>{text}</Text>
         </DialogClose>
       </BaseContainer>
-    );
+    )
   } else {
     return (
       <BaseContainer>
@@ -37,8 +37,8 @@ const FilledButton: React.FC<IProps> = ({
           <Text>{text}</Text>
         </button>
       </BaseContainer>
-    );
+    )
   }
-};
+}
 
-export default FilledButton;
+export default FilledButton

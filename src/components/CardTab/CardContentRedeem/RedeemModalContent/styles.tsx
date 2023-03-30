@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { ITheme } from "../../../Theme";
+import styled from 'styled-components'
+import { ITheme } from '../../../Theme'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 export const Container = styled.div`
@@ -10,7 +10,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-`;
+`
 
 export const Topic = styled.span(
   (props: IProps) => `
@@ -18,13 +18,13 @@ export const Topic = styled.span(
   font-size: 14px;
   color: ${props.theme.colors.brownLight};
   margin-top: 15px;
-`
-);
+`,
+)
 
 export const Attribute = styled.span(
   (props: IProps) => `
   font-family: ${props.theme.fonts.text};
   font-size: 14px;
   color: ${props.theme.colors.brownLight};
-`
-);
+`,
+)

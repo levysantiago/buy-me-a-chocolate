@@ -50,6 +50,7 @@
   "devDependencies": {
     "@ethersproject/providers": "^5.7.2",
     "@metamask/providers": "^10.2.1",
+    "@rocketseat/eslint-config": "^1.2.0",
     "@typechain/ethers-v5": "^10.2.0",
     "@types/react-router-hash-link": "^2.4.5",
     "@types/styled-components": "^5.1.25",

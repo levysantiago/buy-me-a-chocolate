@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
-import DetailedInput from "../../Inputs/DetailedInput";
-import { ButtonContainer } from "../CardContentBuy/styles";
+/* eslint-disable prettier/prettier */
+import React, { useContext } from 'react'
+import DetailedInput from '../../Inputs/DetailedInput'
+import { ButtonContainer } from '../CardContentBuy/styles'
 import {
   BalanceContainer,
   BalanceTitle,
   Container,
   LogoDarkIcon,
   Title,
-} from "./styles";
-import ModalTrigger from "../../ModalTrigger";
-import RedeemModalContent from "./RedeemModalContent";
-import { MetamaskContext } from "../../context/MetamaskContext";
+} from './styles'
+import ModalTrigger from '../../ModalTrigger'
+import RedeemModalContent from './RedeemModalContent'
+import { MetamaskContext } from '../../context/MetamaskContext'
 
 const CardContentRedeem: React.FC = () => {
-  const { chocBalance } = useContext(MetamaskContext);
+  const { chocBalance } = useContext(MetamaskContext)
 
   return (
     <Container>
@@ -26,42 +27,42 @@ const CardContentRedeem: React.FC = () => {
 
       <DetailedInput
         title="CHOC Amount"
-        value={""}
-        type={"number"}
-        setValue={() => {}}
+        value={''}
+        type={'number'}
+        onChange={() => { }}
         identifier="CHOC"
         helperText={`Available: ${chocBalance}`}
       />
 
       <DetailedInput
         title="BUSD Amount"
-        value={""}
-        type={"number"}
-        setValue={() => {}}
+        value={''}
+        type={'number'}
+        onChange={() => { }}
         identifier="BUSD"
       />
 
       <DetailedInput
         title="Wallet address"
-        value={""}
-        type={"text"}
-        setValue={() => {}}
+        value={''}
+        type={'text'}
+        onChange={() => { }}
       />
 
       <ButtonContainer>
         <ModalTrigger
           title="Continuar"
           modal={{
-            title: "Redeem resume",
+            title: 'Redeem resume',
             content: RedeemModalContent({
-              totalToBurn: "asd",
-              totalToReceive: "asd",
+              totalToBurn: 'asd',
+              totalToReceive: 'asd',
             }),
           }}
         />
       </ButtonContainer>
     </Container>
-  );
-};
+  )
+}
 
-export default CardContentRedeem;
+export default CardContentRedeem

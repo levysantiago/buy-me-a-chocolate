@@ -1,9 +1,9 @@
-import React from "react";
-import CardTab from "../../components/CardTab";
-import { MetamaskProvider } from "../../components/context/MetamaskProvider";
-import Navbar from "../../components/Navbar";
-import Theme from "../../components/Theme";
-import VersionBadge from "../../components/VersionBadge";
+import React from 'react'
+import CardTab from '../../components/CardTab'
+import { MetamaskProvider } from '../../components/context/MetamaskProvider'
+import Navbar from '../../components/Navbar'
+import Theme from '../../components/Theme'
+import VersionBadge from '../../components/VersionBadge'
 import {
   Container,
   ContentContainer,
@@ -11,7 +11,7 @@ import {
   Title,
   TitleContainer,
   VersionBadgeContainer,
-} from "./styles";
+} from './styles'
 
 const Home: React.FC = () => {
   return (
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
         </Container>
       </MetamaskProvider>
     </Theme>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

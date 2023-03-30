@@ -1,8 +1,8 @@
-import { Attribute, Container, Topic } from "./styles";
+import { Attribute, Container, Topic } from './styles'
 
 interface IRedeemModalContentProps {
-  totalToBurn: string;
-  totalToReceive: string;
+  totalToBurn: string
+  totalToReceive: string
 }
 
 const RedeemModalContent = ({
@@ -21,7 +21,7 @@ const RedeemModalContent = ({
         <Attribute>{totalToReceive}</Attribute>
       </Topic>
     </Container>
-  );
-};
+  )
+}
 
-export default RedeemModalContent;
+export default RedeemModalContent

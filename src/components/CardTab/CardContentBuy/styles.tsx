@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { ITheme } from "../../Theme";
+import styled from 'styled-components'
+import { ITheme } from '../../Theme'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 export const Container = styled.div`
@@ -11,15 +11,15 @@ export const Container = styled.div`
   flex-direction: column;
   margin: 30px 0px;
   padding: 10px 100px;
-`;
+`
 
 export const Title = styled.span(
   (props: IProps) => `
   font-family: ${props.theme.fonts.title};
   font-size: 20px;
   color: ${props.theme.colors.orange};
-`
-);
+`,
+)
 
 export const RoundButtonsContainer = styled.div`
   display: flex;
@@ -27,9 +27,9 @@ export const RoundButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   margin: 20px 0px;
-`;
+`
 
 export const ButtonContainer = styled.div`
   width: 200px;
   margin-top: 40px;
-`;
+`

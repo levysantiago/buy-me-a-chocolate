@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { ITheme } from "../Theme";
+import styled from 'styled-components'
+import { ITheme } from '../Theme'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 export const Base = styled.div(
@@ -15,13 +15,13 @@ export const Base = styled.div(
   display: flex;
   justify-content: center;
   align-items: center;
-`
-);
+`,
+)
 
 export const Text = styled.span(
   (props: IProps) => `
   font-family: "Roboto-Regular";
   font-size: 14px;
   color: ${props.theme.colors.brownLight};
-`
-);
+`,
+)

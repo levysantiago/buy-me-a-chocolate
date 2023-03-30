@@ -1,6 +1,7 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import FilledButton from "../buttons/FilledButton";
-import UnfilledButton from "../buttons/UnfilledButton";
+/* eslint-disable no-undef */
+import * as Dialog from '@radix-ui/react-dialog'
+import FilledButton from '../buttons/FilledButton'
+import UnfilledButton from '../buttons/UnfilledButton'
 import {
   CloseIcon,
   DialogContent,
@@ -9,20 +10,21 @@ import {
   DialogTitle,
   ButtonsContainer,
   CloseIconContainer,
-} from "./styles";
+} from './styles'
 
 interface IModalTriggerProps {
-  title: string;
+  isModalTrigger?: boolean
+  title: string
   modal: {
-    title: string;
-    content: JSX.Element;
-  };
+    title: string
+    content: JSX.Element
+  }
 }
 
-const ModalTrigger = ({ title, modal }: IModalTriggerProps) => {
+const ModalTrigger = ({ title, modal, isModalTrigger }: IModalTriggerProps) => {
   return (
     <Dialog.Root>
-      <FilledButton text={title} isModalTrigger />
+      <FilledButton text={title} isModalTrigger={isModalTrigger} />
 
       <Dialog.Portal>
         <Dialog.Overlay>
@@ -36,7 +38,7 @@ const ModalTrigger = ({ title, modal }: IModalTriggerProps) => {
             </CloseIconContainer>
           </DialogClose>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             <DialogTitle>{modal.title}</DialogTitle>
 
             {modal.content}
@@ -51,7 +53,7 @@ const ModalTrigger = ({ title, modal }: IModalTriggerProps) => {
         </DialogContent>
       </Dialog.Portal>
     </Dialog.Root>
-  );
-};
+  )
+}
 
-export default ModalTrigger;
+export default ModalTrigger

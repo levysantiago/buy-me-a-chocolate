@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { WalletIcon } from "../icons/styles";
-import { ITheme } from "../Theme";
+import styled from 'styled-components'
+import { WalletIcon } from '../icons/styles'
+import { ITheme } from '../Theme'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 interface ITitleProps extends IProps {
-  isNetworkWrong: boolean | undefined;
+  isNetworkWrong: boolean | undefined
 }
 
 export const Container = styled.button(
@@ -23,16 +23,16 @@ export const Container = styled.button(
   cursor: pointer;
   position: relative;
   border: 0px;
-`
-);
+`,
+)
 
 export const Title = styled.span(
   ({ theme, isNetworkWrong }: ITitleProps) => `
   font-family: ${theme.fonts.title};
   color: ${isNetworkWrong ? theme.colors.wrong : theme.colors.black};
   font-size: 12px;
-`
-);
+`,
+)
 
 export const WalletAddressTitle = styled.span(
   (props: IProps) => `
@@ -40,12 +40,12 @@ export const WalletAddressTitle = styled.span(
   color: ${props.theme.colors.black};
   font-size: 12px;
   margin-left: 10px;
-`
-);
+`,
+)
 
 export const ConnectButtonWalletIcon = styled(WalletIcon)`
   width: 25px;
   position: absolute;
   top: 0px;
   left: 0px;
-`;
+`

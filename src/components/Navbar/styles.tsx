@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { ITheme } from "../Theme";
+import styled from 'styled-components'
+import { ITheme } from '../Theme'
 
 interface IProps {
-  theme: ITheme;
+  theme: ITheme
 }
 
 interface ISideNavProps extends IProps {
-  sideNavOpened: boolean;
+  sideNavOpened: boolean
 }
 
 export const Container = styled.div`
@@ -22,7 +22,7 @@ export const Container = styled.div`
     justify-content: flex-start;
     align-items: center;
   }
-`;
+`
 
 export const MenuItem = styled.div`
   width: 100px;
@@ -34,9 +34,9 @@ export const MenuItem = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 
-export const NavMenu = styled.a.attrs({ href: "#" })`
+export const NavMenu = styled.a.attrs({ href: '#' })`
   display: none;
 
   @media (max-width: 768px) {
@@ -47,14 +47,14 @@ export const NavMenu = styled.a.attrs({ href: "#" })`
     align-items: center;
     justify-content: left;
   }
-`;
+`
 
 export const MenuIcon = styled.img.attrs({
-  src: require("../../assets/menu.svg").default,
-  alt: "Menu icon",
+  src: require('../../assets/menu.svg').default,
+  alt: 'Menu icon',
 })`
   width: 34px;
-`;
+`
 
 export const ItemText = styled.span(
   (props: IProps) =>
@@ -63,8 +63,8 @@ export const ItemText = styled.span(
   color: ${props.theme.colors.brown};
   font-size: 12px;
   margin-left: 5px;
-`
-);
+`,
+)
 
 export const Sidenav = styled.div(
   (props: ISideNavProps) => `
@@ -74,17 +74,17 @@ export const Sidenav = styled.div(
     z-index: 1;
     height: 100%;
     display: flex;
-    visibility: ${props.sideNavOpened ? "visible" : "hidden"};
+    visibility: ${props.sideNavOpened ? 'visible' : 'hidden'};
     flex-direction: column;
-    width: ${props.sideNavOpened ? "50%" : "0px"};
+    width: ${props.sideNavOpened ? '50%' : '0px'};
     transition: width 0.4s;
     background-color: ${props.theme.colors.brownDark};
     position: absolute;
     top: 0px;
     left: 0px;
   }
-`
-);
+`,
+)
 
 export const SidenavItem = styled.div(
   (props: IProps) => `
@@ -105,5 +105,5 @@ export const SidenavItem = styled.div(
     color: ${props.theme.colors.brown};
     background-color: ${props.theme.colors.brown};
   }
-`
-);
+`,
+)
