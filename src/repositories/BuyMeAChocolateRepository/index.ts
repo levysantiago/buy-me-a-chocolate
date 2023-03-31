@@ -1,4 +1,4 @@
-import { Web3Provider } from '@ethersproject/providers'
+import { TransactionResponse, Web3Provider } from '@ethersproject/providers'
 import { ethers } from 'ethers'
 import { BuyMeAChocolateABI as IBuyMeAChocolateABI } from '../../smc-types'
 import { BuyMeAChocolateABI__factory as BuyMeAChocolateTypedFactory } from '../../smc-types/factories'
@@ -44,7 +44,7 @@ class BuyMeAChocolateRepository implements IBuyMeAChoclateRepository {
   }: {
     cryptoAmount: string
     toAddress: string
-  }): Promise<void> {
+  }): Promise<TransactionResponse> {
     this.validate()
 
     const signer = this.provider!.getSigner()
@@ -55,17 +55,23 @@ class BuyMeAChocolateRepository implements IBuyMeAChoclateRepository {
           value: ethers.utils.parseEther(cryptoAmount),
         },
       )
-    await signer.sendTransaction(unsignedTrx)
+    const trxResponse = await signer.sendTransaction(unsignedTrx)
+    return trxResponse
   }
 
-  public async withdraw({ chocAmount }: { chocAmount: string }) {
+  public async withdraw({
+    chocAmount,
+  }: {
+    chocAmount: string
+  }): Promise<TransactionResponse> {
     this.validate()
     const signer = this.provider!.getSigner()
     const unsignedTrx =
       await this.buyChocolateContract!.populateTransaction.withdraw(
         ethers.utils.parseEther(chocAmount),
       )
-    await signer.sendTransaction(unsignedTrx)
+    const trx = await signer.sendTransaction(unsignedTrx)
+    return trx
   }
 
   public async getPrice(): Promise<string> {

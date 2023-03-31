@@ -15,6 +15,7 @@ import RedeemModalContent from './RedeemModalContent'
 import { MetamaskContext } from '../../context/MetamaskContext'
 import { BigNumber as BN } from 'bignumber.js'
 import fixNumber from '../../../helpers/fixNumber'
+import { notification } from '../../notifications/notification'
 
 const CardContentRedeem: React.FC = () => {
   const { chocBalance, buyMeAChocolateRepository, chocTokenRepository, walletAddress } = useContext(MetamaskContext)
@@ -103,17 +104,38 @@ const CardContentRedeem: React.FC = () => {
           await trx.wait()
         }
 
-        await buyMeAChocolateRepository.withdraw({
+        const trx = await buyMeAChocolateRepository.withdraw({
           chocAmount,
         })
-
         resetInputs()
-        alert('Transação enviada com sucesso!')
-        setLoading(false)
+
+        const notificationSubmittedId = notification.open({
+          title: "Transaction submitted...",
+          type: "info",
+          message: "We are waiting for the transaction to be executed."
+        })
+
+        await trx.wait()
+
+        notification.remove(notificationSubmittedId)
+        notification.open({
+          title: "Transaction executed",
+          type: "success",
+          message: "Your transaction was executed successfully!",
+          duration: 5000
+        })
       }
     } catch (e) {
       console.log(e)
-      alert('Error while executing transaction')
+      notification.open({
+        title: "Transaction rejected",
+        type: "danger",
+        message: "Your transaction was rejected. If wasn't you, check if you typed all data correctly.",
+        duration: 10000
+      })
+    } finally {
+      setLoading(false)
+
     }
   }
 

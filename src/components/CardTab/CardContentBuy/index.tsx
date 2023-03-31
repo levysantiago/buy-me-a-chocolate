@@ -15,6 +15,8 @@ import { MetamaskContext } from '../../context/MetamaskContext'
 import { BigNumber as BN } from 'bignumber.js'
 import { ethers } from 'ethers'
 import fixNumber from '../../../helpers/fixNumber'
+import 'react-notifications-component/dist/theme.css'
+import { notification } from '../../notifications/notification'
 
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3)
@@ -66,18 +68,41 @@ const CardContentBuy: React.FC = () => {
     try {
       if (buyMeAChocolateRepository) {
         setLoading(true)
-        await buyMeAChocolateRepository.buyToWithBNB({
+
+        const trxResponse = await buyMeAChocolateRepository.buyToWithBNB({
           cryptoAmount: bnbAmount,
           toAddress: walletTo,
         })
 
         resetInputs()
-        alert('Transação enviada com sucesso!')
-        setLoading(false)
+
+        const notificationSubmittedId = notification.open({
+          title: "Transaction submitted...",
+          type: "info",
+          message: "We are waiting for the transaction to be executed."
+        })
+
+        await trxResponse.wait()
+
+        notification.remove(notificationSubmittedId)
+        notification.open({
+          title: "Transaction executed",
+          type: "success",
+          message: "Your transaction was executed successfully!",
+          duration: 5000
+        })
+
       }
     } catch (e) {
       console.log(e)
-      alert('Error while executing transaction')
+      notification.open({
+        title: "Transaction rejected",
+        type: "danger",
+        message: "Your transaction was rejected. If wasn't you, check if you typed all data correctly.",
+        duration: 10000
+      })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -210,6 +235,7 @@ const CardContentBuy: React.FC = () => {
         />
       </ButtonContainer>
     </Container>
+
   )
 }
 

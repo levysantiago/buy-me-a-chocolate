@@ -7,6 +7,7 @@ import { MetamaskContext } from './MetamaskContext'
 import BuyMeAChocolateRepository from '../../repositories/BuyMeAChocolateRepository'
 import { IBuyMeAChoclateRepository } from '../../repositories/BuyMeAChocolateRepository/IBuyMeAChocolateRepository'
 import { ethers } from 'ethers'
+import { ReactNotifications } from 'react-notifications-component'
 
 export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   children,
@@ -124,6 +125,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         buyMeAChocolateRepository,
       }}
     >
+      <ReactNotifications />
       {children}
     </MetamaskContext.Provider>
   )

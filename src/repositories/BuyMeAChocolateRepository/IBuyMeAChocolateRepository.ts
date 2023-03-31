@@ -1,3 +1,4 @@
+import { TransactionResponse } from '@ethersproject/providers'
 import { ethers } from 'ethers'
 
 export interface IBuyMeAChoclateRepository {
@@ -5,12 +6,12 @@ export interface IBuyMeAChoclateRepository {
   getFeePercent(): Promise<string>
   getPrice(): Promise<string>
   getAddress(): string
-  withdraw({ chocAmount }: { chocAmount: string }): Promise<void>
+  withdraw({ chocAmount }: { chocAmount: string }): Promise<TransactionResponse>
   buyToWithBNB: ({
     cryptoAmount,
     toAddress,
   }: {
     cryptoAmount: string
     toAddress: string
-  }) => Promise<void>
+  }) => Promise<TransactionResponse>
 }

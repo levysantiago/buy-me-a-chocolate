@@ -29,6 +29,71 @@ body {
   background: #150d02;
 }
 
+/* NOTIFICATIONS */
+
+.successNotification{
+  border-radius: 3px;
+  background-color: #FFBE5C;
+  border-left: 8px solid #b67f2d;
+  box-shadow: 1px 3px 4px rgba(0,0,0,.2);
+}
+
+.successNotification .rnc__notification-title{
+  color: #74511f;
+  font-size: 14px;
+}
+
+.successNotification .rnc__notification-message{
+  color: #ac762b;
+  font-size: 12px;
+}
+
+.successNotification .rnc__notification-timer-filler {
+  background-color: #81530e;
+}
+
+.infoNotification{
+  border-radius: 3px;
+  background-color: #89480b;
+  border-left: 8px solid #562d07;
+  box-shadow: 1px 3px 4px rgba(0,0,0,.2);
+}
+
+.infoNotification .rnc__notification-title{
+  color: hsl(35, 100%, 68%);
+  font-size: 14px;
+}
+
+.infoNotification .rnc__notification-message{
+  color: #edbf7f;
+  font-size: 12px;
+}
+
+.infoNotification .rnc__notification-timer-filler {
+  background-color: #F07606;
+}
+
+.dangerNotification{
+  border-radius: 3px;
+  background-color: #aa270a;
+  border-left: 8px solid #761d09;
+  box-shadow: 1px 3px 4px rgba(0,0,0,.2);
+}
+
+.dangerNotification .rnc__notification-title{
+  color: #ffb19f;
+  font-size: 14px;
+}
+
+.dangerNotification .rnc__notification-message{
+  color: #fe9a83;
+  font-size: 12px;
+}
+
+.dangerNotification .rnc__notification-timer-filler {
+  background-color: #761d09;
+}
+
 /*CUSTOMIZING SCROLLBAR*/
 /* width */
 ::-webkit-scrollbar {

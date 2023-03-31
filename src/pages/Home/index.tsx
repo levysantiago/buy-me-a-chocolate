@@ -15,29 +15,31 @@ import {
 
 const Home: React.FC = () => {
   return (
-    <Theme>
-      <MetamaskProvider>
-        <Container>
-          {/* NAVBAR */}
-          <Navbar />
+    <>
+      <Theme>
+        <MetamaskProvider>
+          <Container>
+            {/* NAVBAR */}
+            <Navbar />
 
-          {/* Page title */}
-          <TitleContainer>
-            <HomeChocoLogo />
-            <Title>Buy me a Chocolate</Title>
-          </TitleContainer>
+            {/* Page title */}
+            <TitleContainer>
+              <HomeChocoLogo />
+              <Title>Buy me a Chocolate</Title>
+            </TitleContainer>
 
-          {/* CARD */}
-          <ContentContainer>
-            <CardTab />
-          </ContentContainer>
+            {/* CARD */}
+            <ContentContainer>
+              <CardTab />
+            </ContentContainer>
 
-          <VersionBadgeContainer>
-            <VersionBadge />
-          </VersionBadgeContainer>
-        </Container>
-      </MetamaskProvider>
-    </Theme>
+            <VersionBadgeContainer>
+              <VersionBadge />
+            </VersionBadgeContainer>
+          </Container>
+        </MetamaskProvider>
+      </Theme>
+    </>
   )
 }
 
