@@ -81,6 +81,10 @@ const CardContentBuy: React.FC = () => {
     }
   }
 
+  function parseCoinAmount(coinAmount: string) {
+    return isNaN(parseFloat(coinAmount)) ? coinAmount : fixNumber(coinAmount)
+  }
+
   function onChangeChocAmount(typedChocAmount: string) {
     if (chocPriceInBNB) {
       setChocAmount(typedChocAmount.toString())
@@ -164,10 +168,7 @@ const CardContentBuy: React.FC = () => {
           onChangeBnbAmount(e.target.value)
         }}
         identifier="BNB"
-        helperText={`Available: ${isNaN(parseFloat(cryptoBalance))
-          ? cryptoBalance
-          : fixNumber(cryptoBalance)
-          }`}
+        helperText={`Available: ${parseCoinAmount(cryptoBalance)}`}
       />
 
       <DetailedInput

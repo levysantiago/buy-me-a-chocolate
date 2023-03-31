@@ -21,6 +21,7 @@ const CardContentRedeem: React.FC = () => {
   const [chocAmount, setChocAmount] = useState('')
   const [bnbAmount, setBnbAmount] = useState('')
   const [chocPriceInBNB, setChocPriceInBNB] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function fetchData() {
     if (buyMeAChocolateRepository) {
@@ -49,6 +50,42 @@ const CardContentRedeem: React.FC = () => {
     setChocAmount('')
   }
 
+  function parseCoinAmount(coinAmount: string) {
+    return isNaN(parseFloat(coinAmount)) ? coinAmount : fixNumber(coinAmount)
+  }
+
+  function onChangeChocAmount(typedChocAmount: string) {
+    if (chocPriceInBNB) {
+      setChocAmount(typedChocAmount.toString())
+
+      if (!isNaN(parseInt(typedChocAmount))) {
+        const bnChocAmount = new BN(typedChocAmount)
+        if (bnChocAmount.isGreaterThan(0)) {
+          const newBnbAmount = new BN(bnChocAmount).multipliedBy(chocPriceInBNB)
+          setBnbAmount(newBnbAmount.toString().replace(',', '.'))
+        } else {
+          setBnbAmount('0')
+        }
+      }
+    }
+  }
+
+  function onChangeBnbAmount(typedBnbAmount: string) {
+    if (chocPriceInBNB) {
+      setBnbAmount(typedBnbAmount.toString())
+
+      if (!isNaN(parseInt(typedBnbAmount))) {
+        const bnBnbAmount = new BN(typedBnbAmount)
+        if (bnBnbAmount.isGreaterThan(0)) {
+          const newChocAmount = new BN(bnBnbAmount).div(chocPriceInBNB)
+          setChocAmount(newChocAmount.toString().replace(',', '.'))
+        } else {
+          setChocAmount('0')
+        }
+      }
+    }
+  }
+
   async function onSubmit() {
     if (!validateValues()) {
       alert('Invalid values')
@@ -57,8 +94,8 @@ const CardContentRedeem: React.FC = () => {
     try {
       if (buyMeAChocolateRepository && chocTokenRepository) {
 
+        setLoading(true)
         const allowance = await chocTokenRepository.allowance({ from: walletAddress, to: buyMeAChocolateRepository.getAddress() })
-        console.log(allowance);
 
         if (new BN(allowance).isLessThan(chocAmount)) {
           const maxIntAllowance = "115792089237316195423570985008687907853269984665640564039457.584007913129639935"
@@ -72,6 +109,7 @@ const CardContentRedeem: React.FC = () => {
 
         resetInputs()
         alert('Transação enviada com sucesso!')
+        setLoading(false)
       }
     } catch (e) {
       console.log(e)
@@ -89,7 +127,7 @@ const CardContentRedeem: React.FC = () => {
 
       <BalanceContainer>
         <LogoDarkIcon />
-        <BalanceTitle>{chocBalance}</BalanceTitle>
+        <BalanceTitle>{parseCoinAmount(chocBalance)}</BalanceTitle>
       </BalanceContainer>
 
       <DetailedInput
@@ -97,25 +135,10 @@ const CardContentRedeem: React.FC = () => {
         value={chocAmount}
         type={'text'}
         onChange={(e) => {
-          if (chocPriceInBNB) {
-            const typedChocAmount = e.target.value
-            setChocAmount(typedChocAmount.toString())
-
-            if (!isNaN(parseInt(typedChocAmount))) {
-              const bnChocAmount = new BN(typedChocAmount)
-              if (bnChocAmount.isGreaterThan(0)) {
-                const newBnbAmount = new BN(bnChocAmount).multipliedBy(
-                  chocPriceInBNB,
-                )
-                setBnbAmount(newBnbAmount.toString().replace(',', '.'))
-              } else {
-                setBnbAmount('0')
-              }
-            }
-          }
+          onChangeChocAmount(e.target.value)
         }}
         identifier="CHOC"
-        helperText={`Available: ${isNaN(parseFloat(chocBalance)) ? chocBalance : fixNumber(chocBalance)}`}
+        helperText={`Available: ${parseCoinAmount(chocBalance)}`}
       />
 
       <DetailedInput
@@ -123,30 +146,10 @@ const CardContentRedeem: React.FC = () => {
         value={bnbAmount}
         type={'text'}
         onChange={(e) => {
-          if (chocPriceInBNB) {
-            const typedBnbAmount = e.target.value
-            setBnbAmount(typedBnbAmount.toString())
-
-            if (!isNaN(parseInt(typedBnbAmount))) {
-              const bnBnbAmount = new BN(typedBnbAmount)
-              if (bnBnbAmount.isGreaterThan(0)) {
-                const newChocAmount = new BN(bnBnbAmount).div(chocPriceInBNB)
-                setChocAmount(newChocAmount.toString().replace(',', '.'))
-              } else {
-                setChocAmount('0')
-              }
-            }
-          }
+          onChangeBnbAmount(e.target.value)
         }}
         identifier="BNB"
       />
-
-      {/* <DetailedInput
-        title="Wallet address"
-        value={''}
-        type={'text'}
-        onChange={() => { }}
-      /> */}
 
       <ButtonContainer>
         <ModalTrigger
@@ -155,12 +158,13 @@ const CardContentRedeem: React.FC = () => {
           modal={{
             title: 'Redeem resume',
             content: RedeemModalContent({
-              totalToBurn: `${chocAmount} CHOC`,
-              totalToReceive: `${bnbAmount} BNB`,
+              totalToBurn: chocAmount,
+              totalToReceive: bnbAmount,
             }),
           }}
           onClickConfirm={onSubmit}
           disabled={!walletAddress || !areInputsFilled()}
+          loading={loading}
         />
       </ButtonContainer>
     </Container>

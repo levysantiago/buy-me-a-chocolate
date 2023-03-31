@@ -65,7 +65,7 @@ class BuyMeAChocolateRepository implements IBuyMeAChoclateRepository {
       await this.buyChocolateContract!.populateTransaction.withdraw(
         ethers.utils.parseEther(chocAmount),
       )
-    signer.sendTransaction(unsignedTrx)
+    await signer.sendTransaction(unsignedTrx)
   }
 
   public async getPrice(): Promise<string> {
