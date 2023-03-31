@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from 'react'
 import DetailedInput from '../../Inputs/DetailedInput'
 import RoundChocoButton from '../../buttons/RoundChocoButton'
@@ -11,6 +12,7 @@ import ModalTrigger from '../../ModalTrigger'
 import BuyModalContent from './BuyModalContent'
 import { MetamaskContext } from '../../context/MetamaskContext'
 import { BigNumber as BN } from 'bignumber.js'
+import { ethers } from 'ethers'
 
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3)
@@ -29,6 +31,35 @@ const CardContentBuy: React.FC = () => {
 
       const _chocPriceInBNB = await buyMeAChocolateRepository.getPrice()
       setChocPriceInBNB(_chocPriceInBNB)
+    }
+  }
+
+  function validateValues() {
+    if (isNaN(parseFloat(chocAmount))) return false
+
+    const chocAmountBN = new BN(chocAmount)
+    if (chocAmountBN.isGreaterThan(0) && ethers.utils.isAddress(walletTo)) {
+      return true
+    }
+
+    return false
+  }
+
+  async function onSubmit() {
+    if (!validateValues()) {
+      alert('Invalid values')
+    }
+
+    try {
+      if (buyMeAChocolateRepository) {
+        await buyMeAChocolateRepository.buyToWithBNB({
+          cryptoAmount: bnbAmount,
+          toAddress: walletTo,
+        })
+      }
+    } catch (e) {
+      console.log(e)
+      alert('Error while executing transaction')
     }
   }
 
@@ -144,6 +175,7 @@ const CardContentBuy: React.FC = () => {
               fee: `${feePercent}%`,
             }),
           }}
+          onClickConfirm={onSubmit}
         />
       </ButtonContainer>
     </Container>

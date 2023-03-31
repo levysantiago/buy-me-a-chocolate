@@ -16,7 +16,7 @@ const FilledButton: React.FC<IProps> = ({
 }: IProps) => {
   if (isModalTrigger) {
     return (
-      <BaseContainer>
+      <BaseContainer onClick={onClick}>
         <DialogTrigger type="button" className="base">
           <Text>{text}</Text>
         </DialogTrigger>
@@ -24,7 +24,7 @@ const FilledButton: React.FC<IProps> = ({
     )
   } else if (isModalClose) {
     return (
-      <BaseContainer>
+      <BaseContainer onClick={onClick}>
         <DialogClose type="button" className="base">
           <Text>{text}</Text>
         </DialogClose>

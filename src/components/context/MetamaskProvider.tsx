@@ -123,6 +123,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         isNetworkWrong,
         chocBalance,
         cryptoBalance,
+        chocTokenRepository,
         buyMeAChocolateRepository,
       }}
     >

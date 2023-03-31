@@ -19,9 +19,15 @@ interface IModalTriggerProps {
     title: string
     content: JSX.Element
   }
+  onClickConfirm?: () => void
 }
 
-const ModalTrigger = ({ title, modal, isModalTrigger }: IModalTriggerProps) => {
+const ModalTrigger = ({
+  title,
+  modal,
+  isModalTrigger,
+  onClickConfirm,
+}: IModalTriggerProps) => {
   return (
     <Dialog.Root>
       <FilledButton text={title} isModalTrigger={isModalTrigger} />
@@ -47,7 +53,11 @@ const ModalTrigger = ({ title, modal, isModalTrigger }: IModalTriggerProps) => {
               {/* <DialogClose></DialogClose>
               <DialogClose></DialogClose> */}
               <UnfilledButton text="Cancelar" isModalClose />
-              <FilledButton text="Confirmar" isModalClose />
+              <FilledButton
+                text="Confirmar"
+                isModalClose
+                onClick={onClickConfirm}
+              />
             </ButtonsContainer>
           </div>
         </DialogContent>
