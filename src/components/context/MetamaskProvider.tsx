@@ -1,4 +1,3 @@
-import { BigNumber as BN } from 'bignumber.js'
 import React, { useEffect, useState } from 'react'
 import ChocTokenRepository from '../../repositories/ChocTokenRepository'
 import { IChocTokenRepository } from '../../repositories/ChocTokenRepository/IChocTokenRepository'
@@ -65,14 +64,12 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
     if (walletAddress && chocTokenRepository && cryptoRepository) {
       // Fetch choc balance
       chocTokenRepository.balanceOf(walletAddress).then((balance: string) => {
-        const _chocBalance = new BN(balance).toFixed(3, BN.ROUND_DOWN)
-        setChocBalance(_chocBalance)
+        setChocBalance(balance)
       })
 
       // Fetch crypto balance
       cryptoRepository.balanceOf(walletAddress).then((balance: string) => {
-        const _cryptoBalance = new BN(balance).toFixed(3, BN.ROUND_DOWN)
-        setCryptoBalance(_cryptoBalance)
+        setCryptoBalance(balance)
       })
     }
   }, [walletAddress, chocTokenRepository, cryptoRepository])

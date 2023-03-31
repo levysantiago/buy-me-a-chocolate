@@ -6,6 +6,7 @@ interface IProps {
   onClick?: () => void
   isModalTrigger?: boolean
   isModalClose?: boolean
+  disabled?: boolean
 }
 
 const FilledButton: React.FC<IProps> = ({
@@ -13,10 +14,11 @@ const FilledButton: React.FC<IProps> = ({
   text,
   isModalTrigger = false,
   isModalClose = false,
+  disabled,
 }: IProps) => {
   if (isModalTrigger) {
     return (
-      <BaseContainer onClick={onClick}>
+      <BaseContainer onClick={onClick} disabled={disabled}>
         <DialogTrigger type="button" className="base">
           <Text>{text}</Text>
         </DialogTrigger>
@@ -24,7 +26,7 @@ const FilledButton: React.FC<IProps> = ({
     )
   } else if (isModalClose) {
     return (
-      <BaseContainer onClick={onClick}>
+      <BaseContainer onClick={onClick} disabled={disabled}>
         <DialogClose type="button" className="base">
           <Text>{text}</Text>
         </DialogClose>
@@ -32,8 +34,8 @@ const FilledButton: React.FC<IProps> = ({
     )
   } else {
     return (
-      <BaseContainer>
-        <button onClick={onClick} className="base">
+      <BaseContainer disabled={disabled}>
+        <button onClick={onClick} className="base" disabled={disabled}>
           <Text>{text}</Text>
         </button>
       </BaseContainer>

@@ -25,7 +25,7 @@ export const BalanceContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px 0px;
 `
 
 export const BalanceTitle = styled.span(

@@ -1,3 +1,4 @@
+import fixNumber from '../../../../helpers/fixNumber'
 import { Attribute, Container, Topic } from './styles'
 
 interface IBuyModalContentProps {
@@ -15,17 +16,17 @@ const BuyModalContent = ({
     <Container>
       <Topic>
         {`Total to spend: `}
-        <Attribute>{totalToSpend}</Attribute>
+        <Attribute>{fixNumber(totalToSpend)} BNB</Attribute>
       </Topic>
 
       <Topic>
         {`We will send: `}
-        <Attribute>{totalToSend}</Attribute>
+        <Attribute>{fixNumber(totalToSend)} CHOC</Attribute>
       </Topic>
 
       <Topic>
         {`Service fee: `}
-        <Attribute>{fee}</Attribute>
+        <Attribute>{fee}%</Attribute>
       </Topic>
     </Container>
   )

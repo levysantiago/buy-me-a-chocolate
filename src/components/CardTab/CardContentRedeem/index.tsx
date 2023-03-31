@@ -14,6 +14,7 @@ import ModalTrigger from '../../ModalTrigger'
 import RedeemModalContent from './RedeemModalContent'
 import { MetamaskContext } from '../../context/MetamaskContext'
 import { BigNumber as BN } from 'bignumber.js'
+import fixNumber from '../../../helpers/fixNumber'
 
 const CardContentRedeem: React.FC = () => {
   const { chocBalance, buyMeAChocolateRepository, chocTokenRepository, walletAddress } = useContext(MetamaskContext)
@@ -39,13 +40,21 @@ const CardContentRedeem: React.FC = () => {
     return false
   }
 
+  function areInputsFilled() {
+    return bnbAmount !== '' && chocAmount !== ''
+  }
+
+  function resetInputs() {
+    setBnbAmount('')
+    setChocAmount('')
+  }
+
   async function onSubmit() {
     if (!validateValues()) {
       alert('Invalid values')
     }
 
     try {
-      console.log(buyMeAChocolateRepository, chocTokenRepository);
       if (buyMeAChocolateRepository && chocTokenRepository) {
 
         const allowance = await chocTokenRepository.allowance({ from: walletAddress, to: buyMeAChocolateRepository.getAddress() })
@@ -61,6 +70,8 @@ const CardContentRedeem: React.FC = () => {
           chocAmount,
         })
 
+        resetInputs()
+        alert('Transação enviada com sucesso!')
       }
     } catch (e) {
       console.log(e)
@@ -104,7 +115,7 @@ const CardContentRedeem: React.FC = () => {
           }
         }}
         identifier="CHOC"
-        helperText={`Available: ${chocBalance}`}
+        helperText={`Available: ${isNaN(parseFloat(chocBalance)) ? chocBalance : fixNumber(chocBalance)}`}
       />
 
       <DetailedInput
@@ -139,7 +150,7 @@ const CardContentRedeem: React.FC = () => {
 
       <ButtonContainer>
         <ModalTrigger
-          isModalTrigger={bnbAmount !== '' && chocAmount !== ''}
+          isModalTrigger={areInputsFilled()}
           title="Continuar"
           modal={{
             title: 'Redeem resume',
@@ -149,6 +160,7 @@ const CardContentRedeem: React.FC = () => {
             }),
           }}
           onClickConfirm={onSubmit}
+          disabled={!walletAddress || !areInputsFilled()}
         />
       </ButtonContainer>
     </Container>

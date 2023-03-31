@@ -1,3 +1,4 @@
+import fixNumber from '../../../../helpers/fixNumber'
 import { Attribute, Container, Topic } from './styles'
 
 interface IRedeemModalContentProps {
@@ -13,12 +14,12 @@ const RedeemModalContent = ({
     <Container>
       <Topic>
         {`You will burn: `}
-        <Attribute>{totalToBurn}</Attribute>
+        <Attribute>{fixNumber(totalToBurn)}</Attribute>
       </Topic>
 
       <Topic>
         {`You will receive: `}
-        <Attribute>{totalToReceive}</Attribute>
+        <Attribute>{fixNumber(totalToReceive)}</Attribute>
       </Topic>
     </Container>
   )

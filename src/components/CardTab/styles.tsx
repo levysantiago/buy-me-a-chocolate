@@ -13,9 +13,11 @@ export const Container = styled.div(
   (props: IProps) => `
   background-color: ${props.theme.colors.brownMedium};
   width: 500px;
-  height: 550px;
+  height: 580px;
   border-radius: 40px;
   padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
 `,
 )
 

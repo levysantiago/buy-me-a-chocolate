@@ -11,6 +11,7 @@ import {
   ButtonsContainer,
   CloseIconContainer,
 } from './styles'
+import { ThreeDots } from 'react-loader-spinner'
 
 interface IModalTriggerProps {
   isModalTrigger?: boolean
@@ -20,6 +21,8 @@ interface IModalTriggerProps {
     content: JSX.Element
   }
   onClickConfirm?: () => void
+  disabled?: boolean
+  loading?: boolean
 }
 
 const ModalTrigger = ({
@@ -27,10 +30,28 @@ const ModalTrigger = ({
   modal,
   isModalTrigger,
   onClickConfirm,
+  disabled,
+  loading,
 }: IModalTriggerProps) => {
   return (
     <Dialog.Root>
-      <FilledButton text={title} isModalTrigger={isModalTrigger} />
+      {loading ? (
+        <ThreeDots
+          height="40"
+          width="40"
+          radius="9"
+          color="#FFBE5C"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{ display: 'flex', justifyContent: 'center' }}
+          visible={true}
+        />
+      ) : (
+        <FilledButton
+          text={title}
+          isModalTrigger={isModalTrigger}
+          disabled={disabled}
+        />
+      )}
 
       <Dialog.Portal>
         <Dialog.Overlay>

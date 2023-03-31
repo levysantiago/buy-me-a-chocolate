@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from 'react'
 import DetailedInput from '../../Inputs/DetailedInput'
@@ -13,6 +14,7 @@ import BuyModalContent from './BuyModalContent'
 import { MetamaskContext } from '../../context/MetamaskContext'
 import { BigNumber as BN } from 'bignumber.js'
 import { ethers } from 'ethers'
+import fixNumber from '../../../helpers/fixNumber'
 
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3)
@@ -21,7 +23,8 @@ const CardContentBuy: React.FC = () => {
   const [feePercent, setFeePercent] = useState('')
   const [chocPriceInBNB, setChocPriceInBNB] = useState('')
   const [walletTo, setWalletTo] = useState('')
-  const { cryptoBalance, buyMeAChocolateRepository } =
+  const [loading, setLoading] = useState(false)
+  const { cryptoBalance, buyMeAChocolateRepository, walletAddress } =
     useContext(MetamaskContext)
 
   async function fetchData() {
@@ -45,6 +48,16 @@ const CardContentBuy: React.FC = () => {
     return false
   }
 
+  function areInputsFilled() {
+    return bnbAmount !== '' && chocAmount !== '' && walletTo !== ''
+  }
+
+  function resetInputs() {
+    setBnbAmount('')
+    setChocAmount('')
+    setWalletTo('')
+  }
+
   async function onSubmit() {
     if (!validateValues()) {
       alert('Invalid values')
@@ -52,14 +65,51 @@ const CardContentBuy: React.FC = () => {
 
     try {
       if (buyMeAChocolateRepository) {
+        setLoading(true)
         await buyMeAChocolateRepository.buyToWithBNB({
           cryptoAmount: bnbAmount,
           toAddress: walletTo,
         })
+
+        resetInputs()
+        alert('Transação enviada com sucesso!')
+        setLoading(false)
       }
     } catch (e) {
       console.log(e)
       alert('Error while executing transaction')
+    }
+  }
+
+  function onChangeChocAmount(typedChocAmount: string) {
+    if (chocPriceInBNB) {
+      setChocAmount(typedChocAmount.toString())
+
+      if (!isNaN(parseInt(typedChocAmount))) {
+        const bnChocAmount = new BN(typedChocAmount)
+        if (bnChocAmount.isGreaterThan(0)) {
+          const newBnbAmount = new BN(bnChocAmount).multipliedBy(chocPriceInBNB)
+          setBnbAmount(newBnbAmount.toString().replace(',', '.'))
+        } else {
+          setBnbAmount('0')
+        }
+      }
+    }
+  }
+
+  function onChangeBnbAmount(typedBnbAmount: string) {
+    if (chocPriceInBNB) {
+      setBnbAmount(typedBnbAmount.toString())
+
+      if (!isNaN(parseInt(typedBnbAmount))) {
+        const bnBnbAmount = new BN(typedBnbAmount)
+        if (bnBnbAmount.isGreaterThan(0)) {
+          const newChocAmount = new BN(bnBnbAmount).div(chocPriceInBNB)
+          setChocAmount(newChocAmount.toString().replace(',', '.'))
+        } else {
+          setChocAmount('0')
+        }
+      }
     }
   }
 
@@ -76,7 +126,8 @@ const CardContentBuy: React.FC = () => {
           isSelected={buttonSelected === 0}
           onClick={() => {
             setButtonSelected(0)
-            setChocAmount('1')
+            // setChocAmount('1')
+            onChangeChocAmount('1')
           }}
         />
         <RoundChocoButton
@@ -84,7 +135,8 @@ const CardContentBuy: React.FC = () => {
           isSelected={buttonSelected === 1}
           onClick={() => {
             setButtonSelected(1)
-            setChocAmount('3')
+            // setChocAmount('3')
+            onChangeChocAmount('3')
           }}
         />
         <RoundChocoButton
@@ -92,11 +144,12 @@ const CardContentBuy: React.FC = () => {
           isSelected={buttonSelected === 2}
           onClick={() => {
             setButtonSelected(2)
-            setChocAmount('5')
+            // setChocAmount('5')
+            onChangeChocAmount('5')
           }}
         />
         <RoundChocoButton
-          text=">5x"
+          text="#"
           isSelected={buttonSelected === 3}
           onClick={() => setButtonSelected(3)}
         />
@@ -106,24 +159,15 @@ const CardContentBuy: React.FC = () => {
         title="BNB Amount"
         value={bnbAmount}
         type={'text'}
+        disabled={!walletAddress}
         onChange={(e) => {
-          if (chocPriceInBNB) {
-            const typedBnbAmount = e.target.value
-            setBnbAmount(typedBnbAmount.toString())
-
-            if (!isNaN(parseInt(typedBnbAmount))) {
-              const bnBnbAmount = new BN(typedBnbAmount)
-              if (bnBnbAmount.isGreaterThan(0)) {
-                const newChocAmount = new BN(bnBnbAmount).div(chocPriceInBNB)
-                setChocAmount(newChocAmount.toString().replace(',', '.'))
-              } else {
-                setChocAmount('0')
-              }
-            }
-          }
+          onChangeBnbAmount(e.target.value)
         }}
         identifier="BNB"
-        helperText={`Available: ${cryptoBalance}`}
+        helperText={`Available: ${isNaN(parseFloat(cryptoBalance))
+          ? cryptoBalance
+          : fixNumber(cryptoBalance)
+          }`}
       />
 
       <DetailedInput
@@ -131,24 +175,9 @@ const CardContentBuy: React.FC = () => {
         value={chocAmount}
         type={'text'}
         onChange={(e) => {
-          if (chocPriceInBNB) {
-            const typedChocAmount = e.target.value
-            setChocAmount(typedChocAmount.toString())
-
-            if (!isNaN(parseInt(typedChocAmount))) {
-              const bnChocAmount = new BN(typedChocAmount)
-              if (bnChocAmount.isGreaterThan(0)) {
-                const newBnbAmount = new BN(bnChocAmount).multipliedBy(
-                  chocPriceInBNB,
-                )
-                setBnbAmount(newBnbAmount.toString().replace(',', '.'))
-              } else {
-                setBnbAmount('0')
-              }
-            }
-          }
+          onChangeChocAmount(e.target.value)
         }}
-        disabled={buttonSelected !== 3}
+        disabled={buttonSelected !== 3 || !walletAddress}
         identifier="CHOC"
       />
 
@@ -156,6 +185,7 @@ const CardContentBuy: React.FC = () => {
         title="Wallet address"
         value={walletTo}
         type={'text'}
+        disabled={!walletAddress}
         onChange={(e) => {
           setWalletTo(e.target.value)
         }}
@@ -163,19 +193,19 @@ const CardContentBuy: React.FC = () => {
 
       <ButtonContainer>
         <ModalTrigger
-          isModalTrigger={
-            bnbAmount !== '' && chocAmount !== '' && walletTo !== ''
-          }
+          isModalTrigger={areInputsFilled()}
           title="Continuar"
           modal={{
             title: 'Purchase resume',
             content: BuyModalContent({
-              totalToSpend: `${bnbAmount} BNB`,
-              totalToSend: `${chocAmount} CHOC`,
-              fee: `${feePercent}%`,
+              totalToSpend: bnbAmount,
+              totalToSend: chocAmount,
+              fee: feePercent,
             }),
           }}
           onClickConfirm={onSubmit}
+          disabled={!walletAddress || !areInputsFilled()}
+          loading={loading}
         />
       </ButtonContainer>
     </Container>

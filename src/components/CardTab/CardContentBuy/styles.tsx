@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 30px 0px;
+  margin-top: 30px;
   padding: 10px 100px;
 `
 
@@ -31,5 +31,5 @@ export const RoundButtonsContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   width: 200px;
-  margin-top: 40px;
+  margin-top: 20px;
 `
