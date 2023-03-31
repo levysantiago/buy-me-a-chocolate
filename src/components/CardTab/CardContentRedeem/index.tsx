@@ -156,6 +156,7 @@ const CardContentRedeem: React.FC = () => {
           duration: 5000
         })
         reloadBalances()
+        fetchData()
       }
     } catch (e) {
       console.log(e)
@@ -181,7 +182,7 @@ const CardContentRedeem: React.FC = () => {
 
       <BalanceContainer>
         <LogoDarkIcon />
-        <BalanceTitle>{parseCoinAmount(chocBalance)}</BalanceTitle>
+        <BalanceTitle>{chocBalance}</BalanceTitle>
       </BalanceContainer>
 
       <DetailedInput

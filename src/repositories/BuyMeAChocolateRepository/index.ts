@@ -83,6 +83,7 @@ class BuyMeAChocolateRepository implements IBuyMeAChoclateRepository {
   public async getFeePercent(): Promise<string> {
     this.validate()
     const fee = await this.buyChocolateContract!.getFeePercent()
+
     const formattedFeePercent = new BN(fee.toString()).div('100000000')
     return formattedFeePercent.toString()
   }

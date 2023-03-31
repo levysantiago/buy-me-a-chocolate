@@ -109,6 +109,7 @@ const CardContentBuy: React.FC = () => {
           duration: 5000
         })
         reloadBalances()
+        fetchData()
       }
     } catch (e) {
       console.log(e)
