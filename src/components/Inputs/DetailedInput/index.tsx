@@ -12,7 +12,7 @@ import {
   Title,
 } from './styles'
 
-interface IProps {
+interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string
   title: string
   value: string
@@ -32,6 +32,7 @@ const DetailedInput: React.FC<IProps> = ({
   helperText,
   type,
   disabled = false,
+  ...inputProps
 }: IProps) => {
   return (
     <Container>
@@ -47,6 +48,7 @@ const DetailedInput: React.FC<IProps> = ({
             value={value}
             onChange={onChange}
             disabled={disabled}
+            {...inputProps}
           />
         </InsideBase>
 

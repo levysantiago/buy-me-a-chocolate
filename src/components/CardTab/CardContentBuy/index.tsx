@@ -17,6 +17,7 @@ import { ethers } from 'ethers'
 import fixNumber from '../../../helpers/fixNumber'
 import 'react-notifications-component/dist/theme.css'
 import { notification } from '../../notifications/notification'
+import { isStringFloatNumber } from '../../../helpers/isStringFloatNumber'
 
 const CardContentBuy: React.FC = () => {
   const [buttonSelected, setButtonSelected] = useState<number>(3)
@@ -111,6 +112,10 @@ const CardContentBuy: React.FC = () => {
   }
 
   function onChangeChocAmount(typedChocAmount: string) {
+    if (!isStringFloatNumber(typedChocAmount)) {
+      setChocAmount(chocAmount)
+      return
+    }
     if (chocPriceInBNB) {
       setChocAmount(typedChocAmount.toString())
 
@@ -127,6 +132,10 @@ const CardContentBuy: React.FC = () => {
   }
 
   function onChangeBnbAmount(typedBnbAmount: string) {
+    if (!isStringFloatNumber(typedBnbAmount)) {
+      setBnbAmount(bnbAmount)
+      return
+    }
     if (chocPriceInBNB) {
       setBnbAmount(typedBnbAmount.toString())
 

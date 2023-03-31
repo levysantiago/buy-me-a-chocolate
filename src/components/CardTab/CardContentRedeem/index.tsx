@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 import React, { useContext, useEffect, useState } from 'react'
@@ -16,6 +17,7 @@ import { MetamaskContext } from '../../context/MetamaskContext'
 import { BigNumber as BN } from 'bignumber.js'
 import fixNumber from '../../../helpers/fixNumber'
 import { notification } from '../../notifications/notification'
+import { isStringFloatNumber } from '../../../helpers/isStringFloatNumber'
 
 const CardContentRedeem: React.FC = () => {
   const { chocBalance, buyMeAChocolateRepository, chocTokenRepository, walletAddress } = useContext(MetamaskContext)
@@ -56,6 +58,10 @@ const CardContentRedeem: React.FC = () => {
   }
 
   function onChangeChocAmount(typedChocAmount: string) {
+    if (!isStringFloatNumber(typedChocAmount)) {
+      setChocAmount(chocAmount)
+      return
+    }
     if (chocPriceInBNB) {
       setChocAmount(typedChocAmount.toString())
 
@@ -72,6 +78,10 @@ const CardContentRedeem: React.FC = () => {
   }
 
   function onChangeBnbAmount(typedBnbAmount: string) {
+    if (!isStringFloatNumber(typedBnbAmount)) {
+      setBnbAmount(bnbAmount)
+      return
+    }
     if (chocPriceInBNB) {
       setBnbAmount(typedBnbAmount.toString())
 
