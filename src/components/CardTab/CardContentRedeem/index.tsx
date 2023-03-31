@@ -20,7 +20,12 @@ import { notification } from '../../notifications/notification'
 import { isStringFloatNumber } from '../../../helpers/isStringFloatNumber'
 
 const CardContentRedeem: React.FC = () => {
-  const { chocBalance, buyMeAChocolateRepository, chocTokenRepository, walletAddress } = useContext(MetamaskContext)
+  const {
+    chocBalance,
+    buyMeAChocolateRepository,
+    chocTokenRepository,
+    walletAddress,
+    reloadBalances } = useContext(MetamaskContext)
   const [chocAmount, setChocAmount] = useState('')
   const [bnbAmount, setBnbAmount] = useState('')
   const [chocPriceInBNB, setChocPriceInBNB] = useState('')
@@ -134,6 +139,7 @@ const CardContentRedeem: React.FC = () => {
           message: "Your transaction was executed successfully!",
           duration: 5000
         })
+        reloadBalances()
       }
     } catch (e) {
       console.log(e)

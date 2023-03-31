@@ -25,6 +25,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   const [cryptoRepository, setCryptoRepository] = useState<ICryptoRepository>()
   const [chocBalance, setChocBalance] = useState('...')
   const [cryptoBalance, setCryptoBalance] = useState('...')
+  const [reloadBalances, setReloadBalances] = useState(false)
 
   async function connect(): Promise<string[] | undefined> {
     if (window.ethereum) {
@@ -61,6 +62,10 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
     }
   }
 
+  function forceReloadBalances() {
+    setReloadBalances(!reloadBalances)
+  }
+
   useEffect(() => {
     if (walletAddress && chocTokenRepository && cryptoRepository) {
       // Fetch choc balance
@@ -73,7 +78,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         setCryptoBalance(balance)
       })
     }
-  }, [walletAddress, chocTokenRepository, cryptoRepository])
+  }, [walletAddress, chocTokenRepository, cryptoRepository, reloadBalances])
 
   useEffect(() => {
     if (provider && provider.network) {
@@ -123,6 +128,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         cryptoBalance,
         chocTokenRepository,
         buyMeAChocolateRepository,
+        reloadBalances: forceReloadBalances,
       }}
     >
       <ReactNotifications />

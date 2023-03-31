@@ -27,7 +27,7 @@ const CardContentBuy: React.FC = () => {
   const [chocPriceInBNB, setChocPriceInBNB] = useState('')
   const [walletTo, setWalletTo] = useState('')
   const [loading, setLoading] = useState(false)
-  const { cryptoBalance, buyMeAChocolateRepository, walletAddress } =
+  const { cryptoBalance, buyMeAChocolateRepository, walletAddress, reloadBalances } =
     useContext(MetamaskContext)
 
   async function fetchData() {
@@ -92,7 +92,7 @@ const CardContentBuy: React.FC = () => {
           message: "Your transaction was executed successfully!",
           duration: 5000
         })
-
+        reloadBalances()
       }
     } catch (e) {
       console.log(e)
