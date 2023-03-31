@@ -104,7 +104,23 @@ const CardContentRedeem: React.FC = () => {
 
   async function onSubmit() {
     if (!validateValues()) {
-      alert('Invalid values')
+      notification.open({
+        title: "Invalid typed values",
+        type: "warning",
+        message: "Something is wrong. Please, revise the data you provided.",
+        duration: 5000
+      })
+      return
+    }
+
+    if (new BN(chocAmount).isGreaterThan(chocBalance)) {
+      notification.open({
+        title: "Insuficient CHOC balance",
+        type: "warning",
+        message: `You have ${fixNumber(chocBalance)} CHOC. Please, insert a valid CHOC amount to redeem.`,
+        duration: 5000
+      })
+      return
     }
 
     try {

@@ -30,6 +30,7 @@ export const notification = {
       userDefinedTypes: [
         { name: 'success', htmlClasses: ['successNotification'] },
         { name: 'info', htmlClasses: ['infoNotification'] },
+        { name: 'warning', htmlClasses: ['warningNotification'] },
         { name: 'danger', htmlClasses: ['dangerNotification'] },
       ],
     }

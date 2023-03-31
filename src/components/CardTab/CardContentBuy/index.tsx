@@ -63,7 +63,23 @@ const CardContentBuy: React.FC = () => {
 
   async function onSubmit() {
     if (!validateValues()) {
-      alert('Invalid values')
+      notification.open({
+        title: "Invalid typed values",
+        type: "warning",
+        message: "Something is wrong. Please, revise the data you provided.",
+        duration: 5000
+      })
+      return
+    }
+
+    if (new BN(bnbAmount).isGreaterThan(cryptoBalance)) {
+      notification.open({
+        title: "Insuficient BNB balance",
+        type: "warning",
+        message: `You have ${fixNumber(cryptoBalance)} BNB. Please, insert a valid BNB amount to redeem.`,
+        duration: 5000
+      })
+      return
     }
 
     try {

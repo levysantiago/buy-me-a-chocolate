@@ -31,24 +31,24 @@ body {
 
 /* NOTIFICATIONS */
 
-.successNotification{
+.warningNotification{
   border-radius: 3px;
   background-color: #FFBE5C;
   border-left: 8px solid #b67f2d;
   box-shadow: 1px 3px 4px rgba(0,0,0,.2);
 }
 
-.successNotification .rnc__notification-title{
+.warningNotification .rnc__notification-title{
   color: #74511f;
   font-size: 14px;
 }
 
-.successNotification .rnc__notification-message{
+.warningNotification .rnc__notification-message{
   color: #ac762b;
   font-size: 12px;
 }
 
-.successNotification .rnc__notification-timer-filler {
+.warningNotification .rnc__notification-timer-filler {
   background-color: #81530e;
 }
 
@@ -92,6 +92,27 @@ body {
 
 .dangerNotification .rnc__notification-timer-filler {
   background-color: #761d09;
+}
+
+.successNotification{
+  border-radius: 3px;
+  background-color: #517e0e;
+  border-left: 8px solid #345206;
+  box-shadow: 1px 3px 4px rgba(0,0,0,.2);
+}
+
+.successNotification .rnc__notification-title{
+  color: #adee4d;
+  font-size: 14px;
+}
+
+.successNotification .rnc__notification-message{
+  color: #86cd1b;
+  font-size: 12px;
+}
+
+.successNotification .rnc__notification-timer-filler {
+  background-color: #345206;
 }
 
 /*CUSTOMIZING SCROLLBAR*/
