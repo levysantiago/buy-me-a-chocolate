@@ -8,6 +8,10 @@ interface IProps {
 
 export const Container = styled.div`
   padding: 0px 50px;
+
+  @media (max-width: 500px) {
+    padding: 0px 10px;
+  }
 `
 
 export const ContentContainer = styled.div`

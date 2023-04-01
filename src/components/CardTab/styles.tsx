@@ -18,6 +18,10 @@ export const Container = styled.div(
   padding: 30px 40px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 500px) {
+    padding: 30px 20px;
+  }
 `,
 )
 

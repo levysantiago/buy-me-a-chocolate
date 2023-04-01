@@ -174,7 +174,7 @@ const CardContentRedeem: React.FC = () => {
       </BalanceContainer>
 
       <DetailedInput
-        title="CHOC Amount"
+        title="You will burn"
         value={chocAmount}
         type={'text'}
         onChange={(e) => {
@@ -185,7 +185,7 @@ const CardContentRedeem: React.FC = () => {
       />
 
       <DetailedInput
-        title="BNB Amount"
+        title="You will redeem"
         value={bnbAmount}
         type={'text'}
         onChange={(e) => {

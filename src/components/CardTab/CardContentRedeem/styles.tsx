@@ -11,6 +11,14 @@ export const Container = styled.div`
   flex-direction: column;
   margin: 30px 0px;
   padding: 10px 100px;
+
+  @media (max-width: 768px) {
+    padding: 10px 50px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 10px 0px;
+  }
 `
 
 export const Title = styled.span(

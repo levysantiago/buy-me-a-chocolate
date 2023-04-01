@@ -26,7 +26,7 @@ const CardContentBuy: React.FC = () => {
   const [feePercent, setFeePercent] = useState('')
   const [walletTo, setWalletTo] = useState('')
   const [loading, setLoading] = useState(false)
-  const { cryptoBalance, buyMeAChocolateRepository, walletAddress, reloadBalances, chocPriceInBNB } =
+  const { cryptoBalance, buyMeAChocolateRepository, walletAddress, reloadBalances, chocPriceInBNB, isNetworkWrong } =
     useContext(MetamaskContext)
 
   async function fetchData() {
@@ -183,8 +183,7 @@ const CardContentBuy: React.FC = () => {
           isSelected={buttonSelected === 0}
           onClick={() => {
             setButtonSelected(0)
-            // setChocAmount('1')
-            onChangeChocAmount('1')
+            if (walletAddress && !isNetworkWrong) onChangeChocAmount('1')
           }}
         />
         <RoundChocoButton
@@ -192,8 +191,7 @@ const CardContentBuy: React.FC = () => {
           isSelected={buttonSelected === 1}
           onClick={() => {
             setButtonSelected(1)
-            // setChocAmount('3')
-            onChangeChocAmount('3')
+            if (walletAddress && !isNetworkWrong) onChangeChocAmount('3')
           }}
         />
         <RoundChocoButton
@@ -201,8 +199,7 @@ const CardContentBuy: React.FC = () => {
           isSelected={buttonSelected === 2}
           onClick={() => {
             setButtonSelected(2)
-            // setChocAmount('5')
-            onChangeChocAmount('5')
+            if (walletAddress && !isNetworkWrong) onChangeChocAmount('5')
           }}
         />
         <RoundChocoButton
@@ -213,10 +210,10 @@ const CardContentBuy: React.FC = () => {
       </RoundButtonsContainer>
 
       <DetailedInput
-        title="BNB Amount"
+        title="You will spend"
         value={bnbAmount}
         type={'text'}
-        disabled={!walletAddress}
+        disabled={!walletAddress || isNetworkWrong}
         onChange={(e) => {
           onChangeBnbAmount(e.target.value)
         }}
@@ -225,21 +222,21 @@ const CardContentBuy: React.FC = () => {
       />
 
       <DetailedInput
-        title="CHOC Amount"
+        title="You will gift"
         value={chocAmount}
         type={'text'}
         onChange={(e) => {
           onChangeChocAmount(e.target.value)
         }}
-        disabled={buttonSelected !== 3 || !walletAddress}
+        disabled={buttonSelected !== 3 || !walletAddress || isNetworkWrong}
         identifier="CHOC"
       />
 
       <DetailedInput
-        title="Wallet address"
+        title="Wallet of gift recipient"
         value={walletTo}
         type={'text'}
-        disabled={!walletAddress}
+        disabled={!walletAddress || isNetworkWrong}
         onChange={(e) => {
           setWalletTo(e.target.value)
         }}
@@ -258,7 +255,7 @@ const CardContentBuy: React.FC = () => {
             }),
           }}
           onClickConfirm={onSubmit}
-          disabled={!walletAddress || !areInputsFilled()}
+          disabled={!walletAddress || isNetworkWrong || !areInputsFilled()}
           loading={loading}
         />
       </ButtonContainer>
