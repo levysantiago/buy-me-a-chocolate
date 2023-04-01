@@ -14,5 +14,6 @@ export const MetamaskContext = createContext<IMetamaskContextProps>({
   cryptoRepository: undefined,
   chocBalance: '...',
   cryptoBalance: '...',
+  chocPriceInBNB: '...',
   reloadBalances: () => { }
 })

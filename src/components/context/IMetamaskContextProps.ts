@@ -12,5 +12,6 @@ export interface IMetamaskContextProps {
   cryptoRepository?: ICryptoRepository
   chocBalance: string
   cryptoBalance: string
+  chocPriceInBNB: string
   reloadBalances: () => void
 }

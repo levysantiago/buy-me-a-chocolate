@@ -25,6 +25,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   const [cryptoRepository, setCryptoRepository] = useState<ICryptoRepository>()
   const [chocBalance, setChocBalance] = useState('...')
   const [cryptoBalance, setCryptoBalance] = useState('...')
+  const [chocPriceInBNB, setChocPriceInBNB] = useState('...')
   const [reloadBalances, setReloadBalances] = useState(false)
 
   async function connect(): Promise<string[] | undefined> {
@@ -67,7 +68,12 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
   }
 
   useEffect(() => {
-    if (walletAddress && chocTokenRepository && cryptoRepository) {
+    if (
+      walletAddress &&
+      chocTokenRepository &&
+      cryptoRepository &&
+      buyMeAChocolateRepository
+    ) {
       // Fetch choc balance
       chocTokenRepository.balanceOf(walletAddress).then((balance: string) => {
         setChocBalance(balance)
@@ -77,8 +83,19 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
       cryptoRepository.balanceOf(walletAddress).then((balance: string) => {
         setCryptoBalance(balance)
       })
+
+      // Fetch price
+      buyMeAChocolateRepository.getPrice().then((_chocPriceInBNB) => {
+        setChocPriceInBNB(_chocPriceInBNB)
+      })
     }
-  }, [walletAddress, chocTokenRepository, cryptoRepository, reloadBalances])
+  }, [
+    walletAddress,
+    chocTokenRepository,
+    cryptoRepository,
+    reloadBalances,
+    buyMeAChocolateRepository,
+  ])
 
   useEffect(() => {
     if (provider && provider.network) {
@@ -128,6 +145,7 @@ export const MetamaskProvider: React.FC<{ children: React.ReactElement }> = ({
         cryptoBalance,
         chocTokenRepository,
         buyMeAChocolateRepository,
+        chocPriceInBNB,
         reloadBalances: forceReloadBalances,
       }}
     >

@@ -24,19 +24,15 @@ const CardContentBuy: React.FC = () => {
   const [chocAmount, setChocAmount] = useState('')
   const [bnbAmount, setBnbAmount] = useState('')
   const [feePercent, setFeePercent] = useState('')
-  const [chocPriceInBNB, setChocPriceInBNB] = useState('')
   const [walletTo, setWalletTo] = useState('')
   const [loading, setLoading] = useState(false)
-  const { cryptoBalance, buyMeAChocolateRepository, walletAddress, reloadBalances } =
+  const { cryptoBalance, buyMeAChocolateRepository, walletAddress, reloadBalances, chocPriceInBNB } =
     useContext(MetamaskContext)
 
   async function fetchData() {
     if (buyMeAChocolateRepository) {
       const _feePercent = await buyMeAChocolateRepository.getFeePercent()
       setFeePercent(_feePercent)
-
-      const _chocPriceInBNB = await buyMeAChocolateRepository.getPrice()
-      setChocPriceInBNB(_chocPriceInBNB)
     }
   }
 
@@ -126,6 +122,12 @@ const CardContentBuy: React.FC = () => {
 
   function parseCoinAmount(coinAmount: string) {
     return isNaN(parseFloat(coinAmount)) ? coinAmount : fixNumber(coinAmount)
+  }
+
+  function getChocAmountMinusFee() {
+    let chocAmountToRemove = new BN(chocAmount).multipliedBy(feePercent)
+    chocAmountToRemove = chocAmountToRemove.div(100)
+    return new BN(chocAmount).minus(chocAmountToRemove).toString()
   }
 
   function onChangeChocAmount(typedChocAmount: string) {
@@ -251,7 +253,7 @@ const CardContentBuy: React.FC = () => {
             title: 'Purchase resume',
             content: BuyModalContent({
               totalToSpend: bnbAmount,
-              totalToSend: chocAmount,
+              totalToSend: getChocAmountMinusFee(),
               fee: feePercent,
             }),
           }}

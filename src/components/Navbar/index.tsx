@@ -17,7 +17,7 @@ import fixNumber from '../../helpers/fixNumber'
 const Navbar: React.FC = () => {
   const [sideNavOpened, setSideNavOpened] = useState(false)
 
-  const { connect, walletAddress, isNetworkWrong, chocBalance } =
+  const { connect, walletAddress, isNetworkWrong, chocPriceInBNB } =
     useContext<IMetamaskContextProps>(MetamaskContext)
 
   async function handleConnect() {
@@ -53,9 +53,9 @@ const Navbar: React.FC = () => {
       <MenuItem>
         <ChocoLogo />
         <ItemText>
-          {isNaN(parseFloat(chocBalance))
-            ? chocBalance
-            : fixNumber(chocBalance)}
+          {chocPriceInBNB !== '...'
+            ? ` = ${fixNumber(chocPriceInBNB, { fixed: 3 })} BNB`
+            : '...'}
         </ItemText>
       </MenuItem>
 
@@ -85,9 +85,9 @@ const Navbar: React.FC = () => {
         <SidenavItem>
           <ChocoLogo />
           <ItemText>
-            {isNaN(parseFloat(chocBalance))
-              ? chocBalance
-              : fixNumber(chocBalance)}
+            {chocPriceInBNB !== '...'
+              ? ` = ${fixNumber(chocPriceInBNB, { fixed: 3 })} BNB`
+              : '...'}
           </ItemText>
         </SidenavItem>
 

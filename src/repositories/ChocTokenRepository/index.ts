@@ -29,6 +29,12 @@ class ChocTokenRepository implements IChocTokenRepository {
     return ethers.utils.formatEther(balance)
   }
 
+  public async totalSupply(): Promise<string> {
+    if (!this.chocToken) throw new Error('ChocToken not defined')
+    const _totalSupply = await this.chocToken.totalSupply()
+    return ethers.utils.formatEther(_totalSupply)
+  }
+
   public async allowance({
     from,
     to,

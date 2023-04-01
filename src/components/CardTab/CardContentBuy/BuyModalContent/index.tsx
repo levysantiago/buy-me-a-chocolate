@@ -26,7 +26,7 @@ const BuyModalContent = ({
 
       <Topic>
         {`Service fee: `}
-        <Attribute>{fee}%</Attribute>
+        <Attribute>{fee}% (Applied to CHOC)</Attribute>
       </Topic>
     </Container>
   )

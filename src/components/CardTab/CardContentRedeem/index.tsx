@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import DetailedInput from '../../Inputs/DetailedInput'
 import { ButtonContainer } from '../CardContentBuy/styles'
 import {
@@ -25,18 +25,11 @@ const CardContentRedeem: React.FC = () => {
     buyMeAChocolateRepository,
     chocTokenRepository,
     walletAddress,
-    reloadBalances } = useContext(MetamaskContext)
+    reloadBalances,
+    chocPriceInBNB } = useContext(MetamaskContext)
   const [chocAmount, setChocAmount] = useState('')
   const [bnbAmount, setBnbAmount] = useState('')
-  const [chocPriceInBNB, setChocPriceInBNB] = useState('')
   const [loading, setLoading] = useState(false)
-
-  async function fetchData() {
-    if (buyMeAChocolateRepository) {
-      const _chocPriceInBNB = await buyMeAChocolateRepository.getPrice()
-      setChocPriceInBNB(_chocPriceInBNB)
-    }
-  }
 
   function validateValues() {
     if (isNaN(parseFloat(chocAmount))) return false
@@ -156,7 +149,6 @@ const CardContentRedeem: React.FC = () => {
           duration: 5000
         })
         reloadBalances()
-        fetchData()
       }
     } catch (e) {
       console.log(e)
@@ -171,10 +163,6 @@ const CardContentRedeem: React.FC = () => {
 
     }
   }
-
-  useEffect(() => {
-    fetchData()
-  }, [buyMeAChocolateRepository])
 
   return (
     <Container>
