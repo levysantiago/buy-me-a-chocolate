@@ -25,7 +25,7 @@ const Home: React.FC = () => {
             {/* Page title */}
             <TitleContainer>
               <HomeChocoLogo />
-              <Title>Buy me a Chocolate</Title>
+              <Title>Buy Me a Chocolate</Title>
             </TitleContainer>
 
             {/* CARD */}
