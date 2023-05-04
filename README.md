@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="https://github.com/levysantiago/buy-me-a-chocolate/blob/main/assets/banner.png" alt="Buy Me a Chocolate Banner"/>
+</div>
+
 # Buy Me a Chocolate
 
 The Buy Me a Chocolate is a "remake" of [Buy Me a Coffee](https://www.buymeacoffee.com/?source=fba1&utm_source=FriendlyGAd&utm_medium=BmcAdSearch&utm_campaign=April2020&gclid=Cj0KCQjwr82iBhCuARIsAO0EAZz4NJR2xyfEwbQ4hJmWc2QTfMAiyNBWN63AUomUEzKNEpS252zyYZoaAjlDEALw_wcB) buy in blockchain. In this application you can buy someone a chocolate with BNB, and this person will receive CHOC tokens. After the receiver can access the Buy Me a Chocolate platform to redeem the BNB.
