@@ -18,4 +18,6 @@ Here is CHOC token address if you want to add to your wallet: [0x87E42aD1325aD96
 
 ## Buy Someone a Chocolate!
 
-The **Buy Me a Chocolate** platform is hosted in IPFS (InterPlanetary File System) by Fleek platform: 🚀 [Buy Someone a Chocolate](https://buymeachocolate.on.fleek.co/).
+The **Buy Me a Chocolate** platform is hosted in IPFS (InterPlanetary File System) by Fleek platform: 
+
+🚀 [Buy Someone a Chocolate](https://buymeachocolate.on.fleek.co/).
