@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://github.com/levysantiago/buy-me-a-chocolate/blob/main/assets/banner.png" alt="Buy Me a Chocolate Banner"/>
+    <img src="https://github.com/levysantiago/buy-me-a-chocolate/blob/dev/assets/banner.png" alt="Buy Me a Chocolate Banner"/>
 </div>
 
 # Buy Me a Chocolate
